@@ -29,11 +29,31 @@
 
 	// Sidebar collapse state
 	let isCollapsed = $state(false);
+	
+	// Theme state
+	let isDark = $state(false);
 
 	// Toggle sidebar collapse
 	function toggleSidebar() {
 		isCollapsed = !isCollapsed;
 	}
+	
+	// Toggle theme
+	function toggleTheme() {
+		isDark = !isDark;
+		// Update document class for DaisyUI theme
+		if (isDark) {
+			document.documentElement.setAttribute('data-theme', 'dark');
+		} else {
+			document.documentElement.setAttribute('data-theme', 'light');
+		}
+	}
+	
+	// Initialize theme on mount
+	$effect(() => {
+		// Set initial theme
+		document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+	});
 
 	// Menu items data
 	const menuItems = [
@@ -135,8 +155,9 @@
 				</button>
 
 				<button
-					class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white"
-					aria-label="Dark mode"
+					class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white hover:bg-gray-100"
+					aria-label="Toggle Theme"
+					onclick={() => toggleTheme()}
 				>
 					<HugeiconsIcon icon={Moon02Icon} size={20} color="#6B7280" />
 				</button>
