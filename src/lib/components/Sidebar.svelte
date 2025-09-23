@@ -21,7 +21,8 @@
 		Radio01Icon,
 		Moon02Icon,
 		PuzzleIcon,
-		Attachment01Icon
+		Attachment01Icon,
+		SidebarLeftIcon
 	} from '@hugeicons/core-free-icons';
 
 	let { children } = $props();
@@ -140,7 +141,7 @@
 
 						<!-- Window Icon -->
 						<button class="btn btn-ghost btn-sm" aria-label="Window options">
-							<HugeiconsIcon icon={FlowIcon} size={16} color="currentColor" />
+							<HugeiconsIcon icon={SidebarLeftIcon} size={16} color="currentColor" />
 						</button>
 					</div>
 				</div>
