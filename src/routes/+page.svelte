@@ -1,6 +1,4 @@
 <div class="container mx-auto p-6">
-	<h1 class="text-3xl font-bold mb-6">Ekşi Sözlük</h1>
-	
 	<!-- Search and Filter Bar -->
 	<div class="flex flex-col lg:flex-row gap-4 mb-8">
 		<!-- Search Bar -->
@@ -55,6 +53,8 @@
 			</button>
 		</div>
 	</div>
+	
+	<h1 class="text-3xl font-bold mb-6">Ekşi Sözlük</h1>
 	
 	<!-- Content Cards -->
 	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
