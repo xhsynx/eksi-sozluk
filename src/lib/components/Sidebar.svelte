@@ -27,6 +27,14 @@
 
 	let { children } = $props();
 
+	// Sidebar collapse state
+	let isCollapsed = $state(false);
+
+	// Toggle sidebar collapse
+	function toggleSidebar() {
+		isCollapsed = !isCollapsed;
+	}
+
 	// Menu items data
 	const menuItems = [
 		{ name: 'Akış', icon: FlowIcon, active: false },
@@ -77,7 +85,11 @@
 	<!-- Sidebar -->
 	<div class="drawer-side">
 		<label for="my-drawer" class="drawer-overlay"></label>
-		<aside class="flex min-h-full w-80 bg-base-200">
+		<aside
+			class="flex min-h-full {isCollapsed
+				? 'w-16'
+				: 'w-80'} bg-base-200 transition-all duration-300"
+		>
 			<!-- Left Vertical Button Structure -->
 			<div class="flex w-16 flex-col items-center gap-4 bg-base-300 py-4">
 				<!-- Top 3 Buttons -->
@@ -102,6 +114,15 @@
 					<HugeiconsIcon icon={PuzzleIcon} size={20} color="#6B7280" />
 				</button>
 
+				<!-- Sidebar Toggle Button -->
+				<button
+					class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white hover:bg-gray-100"
+					aria-label="Toggle Sidebar"
+					onclick={() => toggleSidebar()}
+				>
+					<HugeiconsIcon icon={SidebarLeftIcon} size={20} color="#6B7280" />
+				</button>
+
 				<!-- Spacer -->
 				<div class="flex-1"></div>
 
@@ -122,21 +143,18 @@
 			</div>
 
 			<!-- Main Content Area -->
-			<div class="flex flex-1 flex-col">
+			<div class="flex flex-1 flex-col {isCollapsed ? 'hidden' : 'block'}">
 				<!-- User Profile Section -->
 				<div class="border-b border-base-300 p-4">
 					<div class="flex items-center gap-3">
 						<!-- User Info -->
 						<div class="flex flex-1 items-center gap-2">
 							<div class="avatar">
-						
-									<HugeiconsIcon icon={UserCircleIcon} size={20} color="currentColor" />
-						
+								<HugeiconsIcon icon={UserCircleIcon} size={20} color="currentColor" />
 							</div>
 							<div class="flex-1">
 								<div class="text-sm font-medium">Mete Ülkü</div>
 							</div>
-		
 						</div>
 
 						<!-- Window Icon -->
