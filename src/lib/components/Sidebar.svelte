@@ -97,13 +97,13 @@
 		</div>
 
 		<!-- Page content -->
-		<div class="flex-1 p-4" style="background-color: #F4F4F5;">
+		<div class="flex-1 p-4">
 			{@render children?.()}
 		</div>
 	</div>
 
 	<!-- Sidebar -->
-	<div class="drawer-side" style="background-color: #F4F4F5;">
+	<div class="drawer-side">
 		<label for="my-drawer" class="drawer-overlay"></label>
 		<aside
 			class="flex min-h-full {isCollapsed
