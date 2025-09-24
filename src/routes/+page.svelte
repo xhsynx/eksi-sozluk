@@ -9,14 +9,14 @@
 	} from '@hugeicons/core-free-icons';
 </script>
 
-<div class="container mx-auto p-6">
+<div class="container mx-auto p-6" style="background-color: #F4F4F5; min-height: 100vh;">
 	<!-- Search and Filter Bar -->
-	<div class="mb-8 flex flex-col gap-4 lg:flex-row">
+	<div class="mb-8 flex items-center gap-4">
 		<!-- Search Bar -->
-		<div class="lg:w-80">
+		<div class="w-80">
 			<div class="relative">
 				<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-					<svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -28,10 +28,10 @@
 				<input
 					type="text"
 					value="Kemal Kılıçdaroğlu"
-					class="input w-full rounded-lg border border-gray-300 bg-white pr-10 pl-10 text-gray-700 placeholder-gray-500 focus:border-gray-400 focus:outline-none"
+					class="w-full rounded-full border border-gray-200 bg-white px-10 py-2 text-gray-700 placeholder-gray-500 shadow-sm focus:border-gray-300 focus:outline-none"
 				/>
 				<div class="absolute inset-y-0 right-0 flex items-center pr-3">
-					<svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg class="h-4 w-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
 						></path>
 					</svg>
@@ -40,9 +40,9 @@
 		</div>
 
 		<!-- Date Range Selector -->
-		<div class="lg:w-48">
+		<div class="w-48">
 			<button
-				class="btn w-full justify-start border-purple-500 bg-purple-600 text-white hover:border-purple-600 hover:bg-purple-700"
+				class="btn w-full justify-start rounded-full border border-blue-300 bg-blue-100 px-4 py-3 text-blue-700 shadow-sm hover:bg-blue-200"
 			>
 				<svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path

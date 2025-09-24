@@ -97,18 +97,19 @@
 		</div>
 
 		<!-- Page content -->
-		<div class="flex-1 p-4">
+		<div class="flex-1 p-4" style="background-color: #F4F4F5;">
 			{@render children?.()}
 		</div>
 	</div>
 
 	<!-- Sidebar -->
-	<div class="drawer-side">
+	<div class="drawer-side" style="background-color: #F4F4F5;">
 		<label for="my-drawer" class="drawer-overlay"></label>
 		<aside
 			class="flex min-h-full {isCollapsed
 				? 'w-16'
-				: 'w-80'} bg-base-200 transition-all duration-300"
+				: 'w-80'} transition-all duration-300"
+			
 		>
 			<!-- Left Vertical Button Structure -->
 			<div class="flex w-16 flex-col items-center gap-4 bg-base-300 py-4">
