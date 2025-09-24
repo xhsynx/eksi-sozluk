@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { HugeiconsIcon } from '@hugeicons/svelte';
-	import { Sorting01Icon } from '@hugeicons/core-free-icons';
+	import { Sorting01Icon, ArrowDown01Icon } from '@hugeicons/core-free-icons';
 
 	// Props
 	let { 
@@ -31,16 +31,11 @@
 <div class="relative {width}">
 	<button
 		onclick={() => (isOpen = !isOpen)}
-		class="hover:bg-primary-focus btn rounded-full bg-primary px-6 text-primary-content {height}"
+		class="flex items-center gap-2 rounded-full border border-blue-300 bg-blue-100 px-4 py-2 text-blue-700 hover:bg-blue-200 transition-colors {height}"
 	>
-		<div class="mr-2">
-			<HugeiconsIcon icon={Sorting01Icon} size={16} color="currentColor" />
-		</div>
-		{selectedSort}
-		<svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
-			></path>
-		</svg>
+		<HugeiconsIcon icon={Sorting01Icon} size={16} color="currentColor" />
+		<span class="text-sm font-medium">{selectedSort}</span>
+		<HugeiconsIcon icon={ArrowDown01Icon} size={16} color="currentColor" />
 	</button>
 
 	<!-- Dropdown Menu -->
