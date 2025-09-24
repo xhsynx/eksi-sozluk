@@ -30,7 +30,7 @@
 <div class="relative {width}">
 	<button
 		onclick={() => (isOpen = !isOpen)}
-		class="btn w-full justify-start rounded-full border border-blue-300 bg-blue-100 px-4 {height} text-blue-700 shadow-sm hover:bg-blue-200"
+		class="btn w-full justify-start rounded-full border border-primary bg-primary/10 px-4 {height} text-primary shadow-sm hover:bg-primary/20"
 	>
 		<div class="mr-2">
 			<HugeiconsIcon icon={Calendar01Icon} size={20} color="currentColor" />
@@ -44,15 +44,14 @@
 
 	<!-- Dropdown Menu -->
 	{#if isOpen}
-		<div class="absolute top-full left-0 right-0 z-50 mt-1 rounded-lg border border-gray-200 bg-base-100 shadow-lg">
+		<div class="absolute top-full left-0 right-0 z-50 mt-1 rounded-lg border border-base-300 bg-base-100 shadow-lg">
 			<div class="p-2">
 				{#each dateRanges as range}
 					<button
 						onclick={() => selectRange(range.label)}
-						class="w-full rounded-md px-2 py-2 text-left text-sm text-base-400
-						 hover:bg-gray-100 {range.label ===
+						class="w-full rounded-md px-2 py-2 text-left text-sm text-base-content hover:bg-base-200 {range.label ===
 						selectedRange
-							? 'bg-gray-100 font-medium'
+							? 'bg-base-200 font-medium'
 							: ''}"
 					>
 						{range.label}

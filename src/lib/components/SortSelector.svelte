@@ -6,7 +6,7 @@
 	let { 
 		selectedSort = $bindable('En yeniye göre sırala'),
 		width = 'w-auto',
-		height = 'py-3'
+		height = 'h-10'
 	} = $props();
 
 	// Internal state
@@ -31,7 +31,7 @@
 <div class="relative {width}">
 	<button
 		onclick={() => (isOpen = !isOpen)}
-		class="flex items-center gap-2 rounded-full border border-blue-300 bg-blue-100 px-4 py-2 text-blue-700 hover:bg-blue-200 transition-colors {height}"
+		class="flex items-center gap-2 rounded-full border border-primary bg-primary/10 px-4 text-primary hover:bg-primary/20 transition-colors {height} justify-center"
 	>
 		<HugeiconsIcon icon={ArrowUpDownIcon} size={16} color="currentColor" />
 		<span class="text-sm font-medium">{selectedSort}</span>
@@ -40,14 +40,14 @@
 
 	<!-- Dropdown Menu -->
 	{#if isOpen}
-		<div class="absolute top-full left-0 right-0 z-50 mt-1 rounded-lg border border-gray-200 bg-white shadow-lg">
+		<div class="absolute top-full left-0 right-0 z-50 mt-1 rounded-lg border border-base-300 bg-base-100 shadow-lg">
 			<div class="p-2">
 				{#each sortOptions as option}
 					<button
 						onclick={() => selectSort(option.label)}
-						class="w-full rounded-md px-2 py-2 text-left text-sm text-base-400 hover:bg-gray-100 {option.label ===
+						class="w-full rounded-md px-2 py-2 text-left text-sm text-base-content hover:bg-base-200 {option.label ===
 						selectedSort
-							? 'bg-gray-100 font-medium'
+							? 'bg-base-200 font-medium'
 							: ''}"
 					>
 						{option.label}

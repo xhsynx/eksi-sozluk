@@ -90,14 +90,14 @@
 			class: 'text-white centered',
 			onClick: () => console.log('Analytics clicked')
 		},
-		{ icon: PuzzleIcon, class: 'text-base-400 centered', onClick: () => console.log('Cloud clicked') },
-		{ icon: SidebarLeftIcon, class: 'text-base-400 centered', onClick: toggleSidebar },
+		{ icon: PuzzleIcon, class: 'text-base-content centered', onClick: () => console.log('Cloud clicked') },
+		{ icon: SidebarLeftIcon, class: 'text-base-content centered', onClick: toggleSidebar },
 		{
 			icon: Notification01Icon,
-			class: 'text-base-400 centered',
+			class: 'text-base-content centered',
 			onClick: () => console.log('Notifications clicked')
 		},
-		{ icon: Moon02Icon, class: 'text-base-400 centered', onClick: toggleTheme }
+		{ icon: Moon02Icon, class: 'text-base-content centered', onClick: toggleTheme }
 	];
 </script>
 
@@ -117,7 +117,7 @@
 		<label for="my-drawer" class="drawer-overlay"></label>
 		<aside class="flex min-h-full {isCollapsed ? 'w-16' : 'w-80'} transition-all duration-300">
 			<!-- Left Vertical Button Structure -->
-			<div class="flex w-16 flex-col items-center gap-4 dark:bg-base-500 py-4">
+			<div class="flex w-16 flex-col items-center gap-4 bg-base-200 py-4">
 				<!-- Top 3 Buttons -->
 				{#each leftButtons.slice(0, 3) as button, index}
 					<div
@@ -125,7 +125,7 @@
 							? 'bg-black'
 							: index === 1
 								? 'bg-blue-500'
-								: 'border-2 border-base-100 bg-white dark:bg-base-500'}"
+								: 'border-2 border-base-300 bg-base-100'}"
 					>
 						<ButtonIcon
 							icon={button.icon}
@@ -137,7 +137,7 @@
 
 				<!-- Sidebar Toggle Button -->
 				<div
-					class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white hover:bg-gray-100"
+					class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-base-300 bg-base-100 hover:bg-base-200"
 				>
 					<ButtonIcon
 						icon={leftButtons[3].icon}
@@ -152,7 +152,7 @@
 				<!-- Bottom 2 Buttons -->
 				{#each leftButtons.slice(4) as button}
 					<div
-						class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white hover:bg-gray-100"
+						class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-base-300 bg-base-100 hover:bg-base-200"
 					>
 						<ButtonIcon
 							icon={button.icon}

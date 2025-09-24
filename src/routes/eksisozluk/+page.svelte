@@ -179,7 +179,7 @@
 		loadTopics();
 	});
 
-	// Chart data
+	// Chart data with theme-aware colors
 	const chartData = {
 		labels: ['19 Tem', '24 Tem', '29 Tem', '03 Ağu', '08 Ağu'],
 		datasets: [
@@ -244,12 +244,19 @@
 						}
 					},
 					scales: {
+						x: {
+							ticks: {
+								color: 'currentColor'
+							},
+						},
 						y: {
 							beginAtZero: true,
 							max: 80,
 							ticks: {
-								stepSize: 20
-							}
+								stepSize: 20,
+								color: 'currentColor'
+							},
+				
 						}
 					}
 				}
@@ -288,8 +295,8 @@
 			<div class="mb-4 flex items-center gap-4">
 				<!-- Selection Info -->
 				<div class="flex items-center gap-3">
-					<span class="text-sm text-base-400">
-						<span class="font-semibold text-base-400">{selectedItems.size}</span> entry seçildi
+					<span class="text-sm  ">
+						<span class="font-semibold  ">{selectedItems.size}</span> entry seçildi
 					</span>
 					<!-- Clear Selection Link -->
 					<button
@@ -456,7 +463,6 @@
 						{:else}
 							<div class="flex items-center justify-center py-12">
 								<div class="text-center">
-									<div class="mb-4 text-4xl">📝</div>
 									<p class="text-base-content/70">Sol taraftan bir başlık seçin</p>
 								</div>
 							</div>
@@ -477,8 +483,8 @@
 										<HugeiconsIcon icon={kpi.icon} size={24} color="currentColor" />
 									</div>
 									<div class="px-4">
-										<p class="text-sm font-medium text-base-400">{kpi.label}</p>
-										<p class="text-2xl font-medium text-base-400">{kpi.value}</p>
+										<p class="text-sm font-medium  ">{kpi.label}</p>
+										<p class="text-2xl font-medium  ">{kpi.value}</p>
 									</div>
 								</div>
 							</div>
@@ -491,7 +497,7 @@
 					<!-- Genel Section -->
 					<div class="space-y-4">
 						<div class="flex items-center gap-4 m-4">
-							<h3 class="text-lg font-semibold text-base-400">Genel</h3>
+							<h3 class="text-lg font-semibold  ">Genel</h3>
 							<div class="h-px flex-1 bg-base-300"></div>
 						</div>
 
@@ -527,7 +533,7 @@
 									</div>
 								</div>
 								<div class="h-80">
-									<canvas bind:this={chartCanvas}></canvas>
+									<canvas bind:this={chartCanvas} class="text-base-content"></canvas>
 								</div>
 							</div>
 						</div>
@@ -536,19 +542,19 @@
 					<!-- Yazarlar Section -->
 					<div class="space-y-4">
 						<div class="flex items-center gap-4">
-							<h3 class="text-lg font-semibold text-base-400">Yazarlar</h3>
+							<h3 class="text-lg font-semibold  ">Yazarlar</h3>
 							<div class="h-px flex-1 bg-base-300"></div>
 						</div>
 
 						<!-- Popular Authors Card -->
-						<div class="card border border-base-300 bg-white shadow-sm">
+						<div class="card border border-base-300 bg-base-100 shadow-sm">
 							<div class="card-body p-6">
 								<div class="mb-4">
-									<h4 class="text-lg font-medium text-base-400">En Popüler Yazarlar</h4>
+									<h4 class="text-lg font-medium text-base-content">En Popüler Yazarlar</h4>
 								</div>
 								<div class="space-y-3">
 									{#each popularAuthors as author, index}
-										<div class="flex items-center justify-between rounded-lg p-3 hover:bg-base-100">
+										<div class="flex items-center justify-between rounded-lg p-3 hover:bg-base-200">
 											<div class="flex items-center space-x-3">
 												<div
 													class="flex h-8 w-8 items-center justify-center rounded-full bg-base-200 text-sm font-medium text-base-content"
@@ -558,7 +564,7 @@
 												<span class="font-medium text-base-content">{author.name}</span>
 											</div>
 											<div
-												class="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700"
+												class="rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary"
 											>
 												{author.entries} entry
 											</div>

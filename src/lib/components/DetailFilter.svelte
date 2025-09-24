@@ -7,7 +7,7 @@
 		onClick = () => {},
 		text = 'Detaylı Ara',
 		width = 'w-auto',
-		height = 'py-3'
+		height = 'h-10'
 	} = $props();
 
 	// Event handler
@@ -18,7 +18,7 @@
 
 <button
 	onclick={handleClick}
-	class="btn rounded-full bg-orange-500 px-6 text-white hover:bg-orange-600 {width} {height}"
+	class="btn rounded-full bg-orange-500 px-6 text-white hover:bg-orange-600 {width} {height} flex items-center justify-center"
 >
 	<div class="mr-2">
 		<HugeiconsIcon icon={SearchAreaIcon} size={16} color="white" />

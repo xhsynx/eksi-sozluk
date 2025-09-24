@@ -1,10 +1,9 @@
 <script lang="ts">
-	import '../app.css';
 	import Sidebar from '$lib/components/Sidebar.svelte';
-	import EksiSozlukPage from './eksisozluk/page.svelte';
-
+	
+	let { children } = $props();
 </script>
 
 <Sidebar>
-	<EksiSozlukPage />
+	{@render children?.()}
 </Sidebar>
