@@ -6,7 +6,8 @@
 		DownloadIcon,
 		Menu09Icon,
 		MoreHorizontalIcon,
-		User02Icon
+		User02Icon,
+		Chart01Icon
 	} from '@hugeicons/core-free-icons';
 	import { Chart, registerables } from 'chart.js';
 	import { onMount } from 'svelte';
@@ -687,9 +688,29 @@
 					<!-- Statistics Chart Card -->
 					<div class="card border border-base-300 bg-white shadow-sm">
 						<div class="card-body p-6">
-							<div class="mb-4">
-								<h4 class="text-base font-medium text-base-content">Ekşi Sözlük İstatistikleri</h4>
-								<p class="text-sm text-base-content/70">Tarihe göre entry ve yazar dağılımları</p>
+							<div class="mb-4 flex items-center justify-between">
+								<div>
+									<h4 class="text-base font-medium text-base-content">Ekşi Sözlük İstatistikleri</h4>
+									<p class="text-sm text-base-content/70">Tarihe göre entry ve yazar dağılımları</p>
+								</div>
+								
+								<!-- Button Groups -->
+								<div class="flex items-center gap-2">
+									<!-- Chart Type Buttons -->
+									<div class="flex items-center rounded-lg border border-base-300 bg-white p-1">
+										<button class="btn btn-sm btn-ghost rounded-md">
+											<HugeiconsIcon icon={Chart01Icon} size={16} color="gray" />
+										</button>
+										<button class="btn btn-sm btn-primary rounded-md">
+											<HugeiconsIcon icon={Chart01Icon} size={16} color="white" />
+										</button>
+									</div>
+									
+									<!-- Download Button -->
+									<button class="btn btn-sm btn-ghost rounded-md" aria-label="Download">
+										<HugeiconsIcon icon={DownloadIcon} size={16} color="gray" />
+									</button>
+								</div>
 							</div>
 							<div class="h-80">
 								<canvas bind:this={chartCanvas}></canvas>
