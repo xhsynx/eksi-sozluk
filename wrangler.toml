@@ -1,5 +1,13 @@
 name = "eksi-sozluk"
-compatibility_date = "2024-01-15"
-[assets]
-directory = "./dist"
+type = "javascript"
+
+[build]
+command = "bun run build"
+
+[site]
+bucket = "./dist"
+entry-point = "."
+
+[compatibility]
+compatibility_date = "2025-09-25"
 
