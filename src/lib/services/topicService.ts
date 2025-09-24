@@ -7,10 +7,28 @@ const mockUsers: User[] = [
 	{ id: 1, name: 'scandsucker', avatar: '🌙', email: 'scand@example.com', joinDate: '2020-01-15' },
 	{ id: 2, name: 'Paula Mora', avatar: '👩', email: 'paula@example.com', joinDate: '2019-03-22' },
 	{ id: 3, name: 'Eddie Lake', avatar: '👨', email: 'eddie@example.com', joinDate: '2021-07-10' },
-	{ id: 4, name: 'Chris Glasser', avatar: '🧑', email: 'chris@example.com', joinDate: '2020-11-05' },
-	{ id: 5, name: 'Autumn Phillips', avatar: '👩‍🦰', email: 'autumn@example.com', joinDate: '2022-02-18' },
+	{
+		id: 4,
+		name: 'Chris Glasser',
+		avatar: '🧑',
+		email: 'chris@example.com',
+		joinDate: '2020-11-05'
+	},
+	{
+		id: 5,
+		name: 'Autumn Phillips',
+		avatar: '👩‍🦰',
+		email: 'autumn@example.com',
+		joinDate: '2022-02-18'
+	},
 	{ id: 6, name: 'John Dukes', avatar: '👨‍💼', email: 'john@example.com', joinDate: '2018-09-12' },
-	{ id: 7, name: 'Frances Swann', avatar: '👩‍🎨', email: 'frances@example.com', joinDate: '2021-04-30' },
+	{
+		id: 7,
+		name: 'Frances Swann',
+		avatar: '👩‍🎨',
+		email: 'frances@example.com',
+		joinDate: '2021-04-30'
+	},
 	{ id: 8, name: 'Lorri Warf', avatar: '👩‍💻', email: 'lorri@example.com', joinDate: '2020-06-08' }
 ];
 
@@ -32,18 +50,76 @@ const mockTopics: Topic[] = [
 			},
 			{
 				id: 2,
-				content: 'CHP lideri, seçim stratejileri ve parti içi demokrasi konularında görüşlerini paylaştı.',
+				content:
+					'CHP lideri, seçim stratejileri ve parti içi demokrasi konularında görüşlerini paylaştı.',
 				likes: 32,
 				date: '2024-01-15T14:20:00',
 				user: mockUsers[1]
 			},
 			{
 				id: 3,
-				content: 'Kılıçdaroğlu\'nun son röportajı medyada geniş yankı buldu.',
+				content: "Kılıçdaroğlu'nun son röportajı medyada geniş yankı buldu.",
 				likes: 28,
 				date: '2024-01-15T16:45:00',
 				user: mockUsers[2]
-			}
+			},
+			{
+				id: 4,
+				content: "Kılıçdaroğlu'nun son röportajı medyada geniş yankı buldu.",
+				likes: 28,
+				date: '2024-01-15T16:45:00',
+				user: mockUsers[2]
+			},
+			{
+				id: 5,
+				content: "Kılıçdaroğlu'nun son röportajı medyada geniş yankı buldu.",
+				likes: 28,
+				date: '2024-01-15T16:45:00',
+				user: mockUsers[2]
+			},
+			{
+				id: 6,
+				content: "Kılıçdaroğlu'nun son röportajı medyada geniş yankı buldu.",
+				likes: 28,
+				date: '2024-01-15T16:45:00',
+				user: mockUsers[2]
+			},
+			{
+				id: 7,
+				content: "Kılıçdaroğlu'nun son röportajı medyada geniş yankı buldu.",
+				likes: 28,
+				date: '2024-01-15T16:45:00',
+				user: mockUsers[2]
+			},
+			{
+				id: 8,
+				content: "Kılıçdaroğlu'nun son röportajı medyada geniş yankı buldu.",
+				likes: 28,
+				date: '2024-01-15T16:45:00',
+				user: mockUsers[2]
+			},
+			{
+				id: 9,
+				content: "Kılıçdaroğlu'nun son röportajı medyada geniş yankı buldu.",
+				likes: 28,
+				date: '2024-01-15T16:45:00',
+				user: mockUsers[2]
+			},
+			{
+				id: 10,
+				content: "Kılıçdaroğlu'nun son röportajı medyada geniş yankı buldu.",
+				likes: 28,
+				date: '2024-01-15T16:45:00',
+				user: mockUsers[2]
+			},
+			{
+				id: 11,
+				content: "Kılıçdaroğlu'nun son röportajı medyada geniş yankı buldu.",
+				likes: 28,
+				date: '2024-01-15T16:45:00',
+				user: mockUsers[2]
+			},
+			
 		]
 	},
 	{
@@ -156,6 +232,86 @@ const mockTopics: Topic[] = [
 		date: '2024-01-06',
 		likes: 65,
 		entries: []
+	},
+	{
+		id: 11,
+		title: 'Teknoloji Haberleri',
+		content: 'Son teknoloji gelişmeleri ve yenilikler.',
+		date: '2024-01-05',
+		likes: 142,
+		entries: []
+	},
+	{
+		id: 12,
+		title: 'Spor Haberleri',
+		content: 'Futbol, basketbol ve diğer spor dallarındaki son gelişmeler.',
+		date: '2024-01-04',
+		likes: 98,
+		entries: []
+	},
+	{
+		id: 13,
+		title: 'Eğitim Sistemi',
+		content: 'Üniversite sınavları ve eğitim politikaları.',
+		date: '2024-01-03',
+		likes: 156,
+		entries: []
+	},
+	{
+		id: 14,
+		title: 'Sağlık Haberleri',
+		content: 'Tıbbi gelişmeler ve sağlık sistemi.',
+		date: '2024-01-02',
+		likes: 87,
+		entries: []
+	},
+	{
+		id: 15,
+		title: 'Kültür ve Sanat',
+		content: 'Sanat, müzik ve kültürel etkinlikler.',
+		date: '2024-01-01',
+		likes: 76,
+		entries: []
+	},
+	{
+		id: 16,
+		title: 'Politika Analizi',
+		content: 'Siyasi gelişmeler ve analizler.',
+		date: '2023-12-31',
+		likes: 203,
+		entries: []
+	},
+	{
+		id: 17,
+		title: 'Çevre ve Doğa',
+		content: 'İklim değişikliği ve çevre koruma.',
+		date: '2023-12-30',
+		likes: 92,
+		entries: []
+	},
+	{
+		id: 18,
+		title: 'Bilim ve Araştırma',
+		content: 'Bilimsel gelişmeler ve araştırmalar.',
+		date: '2023-12-29',
+		likes: 134,
+		entries: []
+	},
+	{
+		id: 19,
+		title: 'Sosyal Medya',
+		content: 'Sosyal medya trendleri ve platformları.',
+		date: '2023-12-28',
+		likes: 167,
+		entries: []
+	},
+	{
+		id: 20,
+		title: 'İş Dünyası',
+		content: 'Ekonomi ve iş dünyası haberleri.',
+		date: '2023-12-27',
+		likes: 189,
+		entries: []
 	}
 ];
 
@@ -163,12 +319,12 @@ const mockTopics: Topic[] = [
 export const topicService = {
 	async getTopics(page: number = 1, pageSize: number = 10): Promise<TopicListResponse> {
 		// Simulate API delay
-		await new Promise(resolve => setTimeout(resolve, 500));
-		
+		await new Promise((resolve) => setTimeout(resolve, 500));
+
 		const startIndex = (page - 1) * pageSize;
 		const endIndex = startIndex + pageSize;
 		const paginatedTopics = mockTopics.slice(startIndex, endIndex);
-		
+
 		return {
 			topics: paginatedTopics,
 			total: mockTopics.length,
@@ -179,26 +335,27 @@ export const topicService = {
 
 	async getTopicById(id: number): Promise<Topic | null> {
 		// Simulate API delay
-		await new Promise(resolve => setTimeout(resolve, 300));
-		
-		return mockTopics.find(topic => topic.id === id) || null;
+		await new Promise((resolve) => setTimeout(resolve, 300));
+
+		return mockTopics.find((topic) => topic.id === id) || null;
 	},
 
 	async searchTopics(query: string): Promise<Topic[]> {
 		// Simulate API delay
-		await new Promise(resolve => setTimeout(resolve, 400));
-		
-		return mockTopics.filter(topic => 
-			topic.title.toLowerCase().includes(query.toLowerCase()) ||
-			topic.content.toLowerCase().includes(query.toLowerCase())
+		await new Promise((resolve) => setTimeout(resolve, 400));
+
+		return mockTopics.filter(
+			(topic) =>
+				topic.title.toLowerCase().includes(query.toLowerCase()) ||
+				topic.content.toLowerCase().includes(query.toLowerCase())
 		);
 	},
 
 	async getTopicEntries(topicId: number): Promise<Entry[]> {
 		// Simulate API delay
-		await new Promise(resolve => setTimeout(resolve, 300));
-		
-		const topic = mockTopics.find(t => t.id === topicId);
+		await new Promise((resolve) => setTimeout(resolve, 300));
+
+		const topic = mockTopics.find((t) => t.id === topicId);
 		return topic?.entries || [];
 	}
 };

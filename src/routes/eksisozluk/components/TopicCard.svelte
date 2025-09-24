@@ -52,7 +52,7 @@
 		</div>
 
 		<!-- Topics List - Scrollable -->
-		<div class="h-96 space-y-2 overflow-y-auto pr-2">
+		<div class="h-[500px] space-y-2 overflow-y-auto pr-2">
 			{@render children?.()}
 		</div>
 	</div>

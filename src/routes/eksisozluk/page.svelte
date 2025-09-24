@@ -52,6 +52,12 @@
 	let currentPage = $state(1);
 	let totalPages = $state(1);
 
+	// Entries data
+	let entries = $state<any[]>([]);
+	let entriesLoading = $state(false);
+	let currentEntryPage = $state(1);
+	let totalEntryPages = $state(1);
+
 	// Load topics function
 	async function loadTopics(page: number = 1) {
 		topicsLoading = true;
@@ -64,6 +70,27 @@
 			console.error('Error loading topics:', error);
 		} finally {
 			topicsLoading = false;
+		}
+	}
+
+	// Load entries function
+	async function loadEntries(topicId: number, page: number = 1) {
+		entriesLoading = true;
+		try {
+			const topic = await topicService.getTopicById(topicId);
+			if (topic) {
+				const allEntries = topic.entries;
+				const pageSize = 10;
+				const startIndex = (page - 1) * pageSize;
+				const endIndex = startIndex + pageSize;
+				entries = allEntries.slice(startIndex, endIndex);
+				currentEntryPage = page;
+				totalEntryPages = Math.ceil(allEntries.length / pageSize);
+			}
+		} catch (error) {
+			console.error('Error loading entries:', error);
+		} finally {
+			entriesLoading = false;
 		}
 	}
 
@@ -80,10 +107,27 @@
 		}
 	}
 
+	// Entry navigation functions
+	async function handleEntryPrevious() {
+		if (currentEntryPage > 1 && selectedTopic) {
+			await loadEntries(selectedTopic.id, currentEntryPage - 1);
+		}
+	}
+
+	async function handleEntryNext() {
+		if (currentEntryPage < totalEntryPages && selectedTopic) {
+			await loadEntries(selectedTopic.id, currentEntryPage + 1);
+		}
+	}
+
 	async function handleTopicClick(topicId: number) {
 		try {
 			const topic = await topicService.getTopicById(topicId);
 			selectedTopic = topic;
+			// Load entries for the selected topic
+			if (topic) {
+				await loadEntries(topicId, 1);
+			}
 		} catch (error) {
 			console.error('Error loading topic:', error);
 		}
@@ -369,24 +413,30 @@
 			<div class="space-y-3">
 				<TopicCard
 					title={selectedTopic?.title || 'Başlık seçin'}
-					currentPage={1}
-					totalPages={20}
-					onPrevious={() => console.log('Previous content page')}
-					onNext={() => console.log('Next content page')}
+					currentPage={currentEntryPage}
+					totalPages={totalEntryPages}
+					onPrevious={handleEntryPrevious}
+					onNext={handleEntryNext}
 				>
 					{#if selectedTopic}
-						{#each selectedTopic.entries as entry, i}
-							<TopicItem
-								type="detail"
-								content={entry.content}
-								author={entry.user.name}
-								lastUpdate={formatDate(entry.date)}
-								likes={entry.likes}
-								avatar={entry.user.avatar}
-								isSelected={selectedItems.has(i)}
-								onToggleSelection={() => toggleSelection(i)}
-							/>
-						{/each}
+						{#if entriesLoading}
+							<div class="flex items-center justify-center py-8">
+								<div class="loading loading-spinner loading-md"></div>
+							</div>
+						{:else}
+							{#each entries as entry, i}
+								<TopicItem
+									type="detail"
+									content={entry.content}
+									author={entry.user.name}
+									lastUpdate={formatDate(entry.date)}
+									likes={entry.likes}
+									avatar={entry.user.avatar}
+									isSelected={selectedItems.has(i)}
+									onToggleSelection={() => toggleSelection(i)}
+								/>
+							{/each}
+						{/if}
 					{:else}
 						<div class="flex items-center justify-center py-12">
 							<div class="text-center">

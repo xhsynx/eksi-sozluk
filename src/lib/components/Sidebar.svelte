@@ -166,7 +166,7 @@
 			<!-- Main Content Area -->
 			<div class="flex flex-1 flex-col {isCollapsed ? 'hidden' : 'block'}">
 				<!-- User Profile Section -->
-				<div class="border-b border-base-300 p-4">
+				<div class="p-4">
 					<div class="flex items-center gap-3">
 						<!-- User Info -->
 						<div class="flex flex-1 items-center gap-2">
