@@ -7,6 +7,23 @@
 		Menu09Icon,
 		MoreHorizontalIcon
 	} from '@hugeicons/core-free-icons';
+
+	// Date picker state
+	let isDatePickerOpen = $state(false);
+	let selectedDateRange = $state('Son 7 gün');
+
+	const dateRanges = [
+		{ label: 'Son 1 gün', value: '1' },
+		{ label: 'Son 7 gün', value: '7' },
+		{ label: 'Son 30 gün', value: '30' },
+		{ label: 'Son 90 gün', value: '90' },
+		{ label: 'Son 1 yıl', value: '365' }
+	];
+
+	function selectDateRange(range: string) {
+		selectedDateRange = range;
+		isDatePickerOpen = false;
+	}
 </script>
 
 <div class="container mx-auto p-6" style="background-color: #F4F4F5; min-height: 100vh;">
@@ -40,8 +57,9 @@
 		</div>
 
 		<!-- Date Range Selector -->
-		<div class="w-48">
+		<div class="w-48 relative">
 			<button
+				onclick={() => isDatePickerOpen = !isDatePickerOpen}
 				class="btn w-full justify-start rounded-full border border-blue-300 bg-blue-100 px-4 py-3 text-blue-700 shadow-sm hover:bg-blue-200"
 			>
 				<svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -52,12 +70,26 @@
 						d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
 					></path>
 				</svg>
-				Son 7 gün
+				{selectedDateRange}
 				<svg class="ml-auto h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
 					></path>
 				</svg>
 			</button>
+
+			<!-- Dropdown Menu -->
+			{#if isDatePickerOpen}
+				<div class="absolute top-full left-0 right-0 mt-1 bg-white border border-blue-200 rounded-lg shadow-lg z-50">
+					{#each dateRanges as range}
+						<button
+							onclick={() => selectDateRange(range.label)}
+							class="w-full px-4 py-2 text-left text-blue-700 hover:bg-blue-50 first:rounded-t-lg last:rounded-b-lg {range.label === selectedDateRange ? 'bg-blue-100 font-semibold' : ''}"
+						>
+							{range.label}
+						</button>
+					{/each}
+				</div>
+			{/if}
 		</div>
 
 		<!-- Spacer -->
@@ -378,7 +410,7 @@
 											<!-- Right: Author, Time, Avatar, Actions -->
 											<div class="flex items-center space-x-3">
 												<!-- Author and Timestamp -->
-												<div class="flex items-center space-x-2">
+												<div class="flex flex-col items-center space-x-2">
 													<span class="text-sm font-semibold text-base-content">scandsucker</span>
 													<span class="text-xs text-base-content/70">22 Tem, 10:00</span>
 												</div>
