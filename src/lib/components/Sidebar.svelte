@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import ButtonIcon from './ButtonIcon.svelte';
+	import { page } from '$app/stores';
 	import {
 		Analytics01Icon,
 		Notification01Icon,
@@ -57,26 +58,31 @@
 
 	// Menu items data
 	const menuItems = [
-		{ name: 'Akış', icon: FlowIcon, active: false },
-		{ name: 'Genel Bakış', icon: Grid02Icon, active: false },
-		{ name: 'Twitter', icon: TwitterIcon, active: false },
-		{ name: 'YouTube', icon: YoutubeIcon, active: false },
-		{ name: 'Ekşi Sözlük', icon: FlowIcon, active: true },
-		{ name: 'TikTok', icon: TiktokIcon, active: false },
-		{ name: 'Haberler', icon: News01Icon, active: false },
-		{ name: 'Canlı Yayın', icon: LiveStreaming01Icon, active: false },
-		{ name: 'Şikayetvar', icon: CheckmarkCircle01Icon, active: false },
-		{ name: 'Instagram', icon: InstagramIcon, active: false },
-		{ name: 'Facebook', icon: FacebookIcon, active: false },
-		{ name: 'Uygulamalar', icon: Briefcase01Icon, active: false },
-		{ name: 'Pazaryeri', icon: Store01Icon, active: false },
-		{ name: 'Google Haritalar', icon: Location01Icon, active: false },
-		{ name: 'Radyo Yayını', icon: Radio01Icon, active: false },
-		{ name: 'Rakip Analizi', icon: FlowIcon, active: false },
-		{ name: 'Raporlar', icon: FlowIcon, active: false },
-		{ name: 'Trendler', icon: FlowIcon, active: false },
-		{ name: 'Alarmlar', icon: FlowIcon, active: false }
+		{ name: 'Akış', icon: FlowIcon, route: '/akış' },
+		{ name: 'Genel Bakış', icon: Grid02Icon, route: '/genel-bakış' },
+		{ name: 'Twitter', icon: TwitterIcon, route: '/twitter' },
+		{ name: 'YouTube', icon: YoutubeIcon, route: '/youtube' },
+		{ name: 'Ekşi Sözlük', icon: FlowIcon, route: '/eksisozluk' },
+		{ name: 'TikTok', icon: TiktokIcon, route: '/tiktok' },
+		{ name: 'Haberler', icon: News01Icon, route: '/haberler' },
+		{ name: 'Canlı Yayın', icon: LiveStreaming01Icon, route: '/canlı-yayın' },
+		{ name: 'Şikayetvar', icon: CheckmarkCircle01Icon, route: '/şikayetvar' },
+		{ name: 'Instagram', icon: InstagramIcon, route: '/instagram' },
+		{ name: 'Facebook', icon: FacebookIcon, route: '/facebook' },
+		{ name: 'Uygulamalar', icon: Briefcase01Icon, route: '/uygulamalar' },
+		{ name: 'Pazaryeri', icon: Store01Icon, route: '/pazaryeri' },
+		{ name: 'Google Haritalar', icon: Location01Icon, route: '/google-haritalar' },
+		{ name: 'Radyo Yayını', icon: Radio01Icon, route: '/radyo-yayını' },
+		{ name: 'Rakip Analizi', icon: FlowIcon, route: '/rakip-analizi' },
+		{ name: 'Raporlar', icon: FlowIcon, route: '/raporlar' },
+		{ name: 'Trendler', icon: FlowIcon, route: '/trendler' },
+		{ name: 'Alarmlar', icon: FlowIcon, route: '/alarmlar' }
 	];
+
+	// Function to check if a menu item is active
+	function isActive(route: string): boolean {
+		return $page.url.pathname === route;
+	}
 
 	// Left vertical buttons data
 	const leftButtons = [
@@ -117,7 +123,7 @@
 		<label for="my-drawer" class="drawer-overlay"></label>
 		<aside class="flex min-h-full {isCollapsed ? 'w-16' : 'w-80'} transition-all duration-300">
 			<!-- Left Vertical Button Structure -->
-			<div class="flex w-16 flex-col items-center gap-4 bg-base-200 py-4">
+			<div class="flex w-16 flex-col items-center gap-4 bg-base-300 py-4">
 				<!-- Top 3 Buttons -->
 				{#each leftButtons.slice(0, 3) as button, index}
 					<div
@@ -191,7 +197,7 @@
 						{#each menuItems as item}
 							<li>
 								<div
-									class="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left {item.active
+									class="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left {isActive(item.route)
 										? 'bg-base-300'
 										: 'hover:bg-base-300'}"
 								>
