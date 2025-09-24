@@ -25,6 +25,10 @@
 	import { onMount } from 'svelte';
 	import { topicService } from '$lib/services/topicService';
 	import type { Topic } from '$lib/types/topic';
+	import { isDark } from '$lib/stores/theme';
+
+	// Get theme state from store
+	let isDarkTheme = $derived($isDark);
 
 	// Search state
 	let searchValue = $state('Kemal Kılıçdaroğlu');
@@ -476,11 +480,11 @@
 				<!-- KPI Cards -->
 				<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 bg-base-100 border border-base-300 rounded-2xl p-2">
 					{#each kpiData as kpi}
-						<div class="card {kpi.color}">
+						<div class="card {isDarkTheme ? 'bg-base-100' : kpi.color}">
 							<div class="card-body p-4">
 								<div class="flex items-center">
 									<div class="p-3">
-										<HugeiconsIcon icon={kpi.icon} size={24} color="currentColor" />
+										<HugeiconsIcon icon={kpi.icon} size={24} color="primary" />
 									</div>
 									<div class="px-4">
 										<p class="text-sm font-medium  ">{kpi.label}</p>
@@ -497,16 +501,16 @@
 					<!-- Genel Section -->
 					<div class="space-y-4">
 						<div class="flex items-center gap-4 m-4">
-							<h3 class="text-lg font-semibold  ">Genel</h3>
+							<h3 class="text-lg font-semibold text-base-content/70">Genel</h3>
 							<div class="h-px flex-1 bg-base-300"></div>
 						</div>
 
 						<!-- Statistics Chart Card -->
-						<div class="card border border-base-300 bg-white shadow-sm">
+						<div class="card border border-base-300 bg-base-100 shadow-sm">
 							<div class="card-body p-6">
 								<div class="mb-4 flex items-center justify-between">
 									<div>
-										<h4 class="text-base font-medium text-base-content">
+										<h4 class="text-base font-medium text-base-content/70">
 											Ekşi Sözlük İstatistikleri
 										</h4>
 										<p class="text-sm text-base-content/70">
@@ -517,7 +521,7 @@
 									<!-- Button Groups -->
 									<div class="flex items-center gap-2">
 										<!-- Chart Type Buttons -->
-										<div class="flex items-center rounded-lg border border-base-300 bg-white p-1">
+										<div class="flex items-center rounded-lg border border-base-300 bg-base-100 p-1">
 											<button class="btn rounded-md btn-ghost btn-sm">
 												<HugeiconsIcon icon={Chart01Icon} size={16} color="gray" />
 											</button>
@@ -542,7 +546,7 @@
 					<!-- Yazarlar Section -->
 					<div class="space-y-4">
 						<div class="flex items-center gap-4">
-							<h3 class="text-lg font-semibold  ">Yazarlar</h3>
+							<h3 class="text-lg font-semibold text-base-content/70">Yazarlar</h3>
 							<div class="h-px flex-1 bg-base-300"></div>
 						</div>
 

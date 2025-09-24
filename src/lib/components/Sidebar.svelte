@@ -2,6 +2,7 @@
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import ButtonIcon from './ButtonIcon.svelte';
 	import { page } from '$app/stores';
+	import { isDark, toggleTheme } from '$lib/stores/theme';
 	import {
 		Analytics01Icon,
 		Notification01Icon,
@@ -31,30 +32,10 @@
 	// Sidebar collapse state
 	let isCollapsed = $state(false);
 
-	// Theme state
-	let isDark = $state(false);
-
 	// Toggle sidebar collapse
 	function toggleSidebar() {
 		isCollapsed = !isCollapsed;
 	}
-
-	// Toggle theme
-	function toggleTheme() {
-		isDark = !isDark;
-		// Update document class for DaisyUI theme
-		if (isDark) {
-			document.documentElement.setAttribute('data-theme', 'dark');
-		} else {
-			document.documentElement.setAttribute('data-theme', 'light');
-		}
-	}
-
-	// Initialize theme on mount
-	$effect(() => {
-		// Set initial theme
-		document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-	});
 
 	// Menu items data
 	const menuItems = [
