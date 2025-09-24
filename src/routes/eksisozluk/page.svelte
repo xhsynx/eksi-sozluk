@@ -7,13 +7,18 @@
 		Menu09Icon,
 		MoreHorizontalIcon,
 		User02Icon,
-		Chart01Icon
+		Chart01Icon,
+		LockIcon,
+		Delete01Icon
 	} from '@hugeicons/core-free-icons';
 	import SearchBar from '$lib/components/SearchBar.svelte';
 	import DateRangeSelector from '$lib/components/DateRangeSelector.svelte';
 	import RefreshButton from '$lib/components/RefreshButton.svelte';
 	import DetailFilter from '$lib/components/DetailFilter.svelte';
 	import SortSelector from '$lib/components/SortSelector.svelte';
+	import ButtonIcon from '$lib/components/ButtonIcon.svelte';
+	import TopicCard from './components/TopicCard.svelte';
+	import TopicItem from './components/TopicItem.svelte';
 	import { Chart, registerables } from 'chart.js';
 	import { onMount } from 'svelte';
 
@@ -37,6 +42,46 @@
 
 	// Sort state
 	let selectedSort = $state('En yeniye göre sırala');
+
+	// Topic data
+	const topics = [
+		{
+			id: 1,
+			title: 'uğur dündar kemal kılıçdaroğlu kavgası',
+			lastUpdate: '22 Tem, 10:30',
+			entryCount: 4,
+			isActive: true
+		},
+		{ id: 2, title: 'jahrein', lastUpdate: '21 Tem, 15:45', entryCount: 49, isActive: false },
+		{
+			id: 3,
+			title: 'muharrem ince',
+			lastUpdate: '21 Tem, 12:20',
+			entryCount: 251,
+			isActive: false
+		},
+		{ id: 4, title: 'özgür özel', lastUpdate: '20 Tem, 18:15', entryCount: 1187, isActive: false },
+		{
+			id: 5,
+			title: 'kemal kılıçdaroğlu',
+			lastUpdate: '20 Tem, 14:30',
+			entryCount: 9881,
+			isActive: false
+		}
+	];
+
+	// Topic navigation functions
+	function handleTopicPrevious() {
+		console.log('Previous topic page');
+	}
+
+	function handleTopicNext() {
+		console.log('Next topic page');
+	}
+
+	function handleTopicClick(topicId: number) {
+		console.log('Topic clicked:', topicId);
+	}
 
 	// Selection state
 	let selectedItems = $state(new Set<number>());
@@ -172,46 +217,35 @@
 				<!-- Selection Info -->
 				<div class="flex items-center gap-3">
 					<span class="text-sm text-base-content/70">{selectedItems.size} entry seçildi</span>
-					<button
-						onclick={() => (selectedItems = new Set())}
-						class="text-sm text-blue-600 underline hover:text-blue-800"
-					>
-						Seçimi Temizle
-					</button>
+					<!-- Delete Button -->
+					<ButtonIcon
+						text="Seçimi Temizle"
+						variant="default"
+						type="text"
+						size="sm"
+						onClick={() => (selectedItems = new Set())}
+					/>
 				</div>
 
 				<!-- Action Buttons for Selected Items - All aligned to left -->
 				<div class="flex items-center gap-3">
-					<!-- Engelle Button -->
-					<button class="btn rounded-full bg-gray-200 px-4 text-gray-700 btn-sm hover:bg-gray-300">
-						<svg
-							class="mr-2 h-4 w-4 text-red-500"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M6 18L18 6M6 6l12 12"
-							></path>
-						</svg>
-						<span class="text-red-600">Engelle</span>
-					</button>
+					<!-- Block Button -->
+					<ButtonIcon
+						icon={LockIcon}
+						text="Engelle"
+						variant="warning"
+						size="sm"
+						onClick={() => console.log('Engelle clicked')}
+					/>
 
-					<!-- Sil Button -->
-					<button class="btn rounded-full bg-red-500 px-4 text-white btn-sm hover:bg-red-600">
-						<svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-							></path>
-						</svg>
-						Sil
-					</button>
+					<!-- Delete Button -->
+					<ButtonIcon
+						icon={Delete01Icon}
+						text="Sil"
+						variant="danger"
+						size="sm"
+						onClick={() => console.log('Sil clicked')}
+					/>
 				</div>
 			</div>
 		{:else}
@@ -223,7 +257,7 @@
 					<DetailFilter onClick={handleDetailFilter} />
 
 					<!-- Sort Dropdown -->
-					<SortSelector bind:selectedSort={selectedSort} />
+					<SortSelector bind:selectedSort />
 				</div>
 
 				<!-- Right side: Temizle button -->
@@ -291,132 +325,23 @@
 		<div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
 			<!-- Left Column - Topics List -->
 			<div class="space-y-3">
-				<div class="card border border-base-300 bg-base-100 shadow-sm">
-					<div class="card-body p-4">
-						<!-- Header with Pagination -->
-						<div class="mb-3 flex items-center justify-between border-b border-base-300 pb-3">
-							<!-- Left: Title and Pagination -->
-							<div class="flex items-center space-x-4">
-								<h3 class="font-semibold text-base-content">Başlıklar</h3>
-								<span class="text-sm text-base-content/70">1 / 47</span>
-							</div>
-
-							<!-- Right: Navigation -->
-							<div class="flex items-center space-x-1">
-								<button
-									class="p-1 text-base-content/70 hover:text-base-content"
-									aria-label="Previous"
-								>
-									<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											stroke-width="2"
-											d="M15 19l-7-7 7-7"
-										></path>
-									</svg>
-								</button>
-								<button class="p-1 text-base-content/70 hover:text-base-content" aria-label="Next">
-									<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											stroke-width="2"
-											d="M9 5l7 7-7 7"
-										></path>
-									</svg>
-								</button>
-							</div>
-						</div>
-
-						<!-- Topics List -->
-						<div class="space-y-2">
-							<!-- Active Topic -->
-							<div
-								class="flex items-center justify-between rounded-lg border border-primary/20 bg-primary/10 p-3"
-							>
-								<div class="flex-1">
-									<h4 class="text-sm font-medium text-base-content">
-										uğur dündar kemal kılıçdaroğlu kavgası
-									</h4>
-									<p class="mt-1 text-xs text-base-content/70">Son güncelleme: 22 Tem, 10:30</p>
-								</div>
-								<div class="ml-3">
-									<span
-										class="inline-flex items-center rounded-full bg-primary px-2 py-1 text-xs font-medium text-primary-content"
-									>
-										4
-									</span>
-								</div>
-							</div>
-
-							<!-- Other Topics -->
-							<div
-								class="flex cursor-pointer items-center justify-between rounded-lg p-3 hover:bg-base-200"
-							>
-								<div class="flex-1">
-									<h4 class="text-sm font-medium text-base-content">jahrein</h4>
-									<p class="mt-1 text-xs text-base-content/70">Son güncelleme: 21 Tem, 15:45</p>
-								</div>
-								<div class="ml-3">
-									<span
-										class="inline-flex items-center rounded-full bg-base-300 px-2 py-1 text-xs font-medium text-base-content"
-									>
-										49
-									</span>
-								</div>
-							</div>
-
-							<div
-								class="flex cursor-pointer items-center justify-between rounded-lg p-3 hover:bg-base-200"
-							>
-								<div class="flex-1">
-									<h4 class="text-sm font-medium text-base-content">muharrem ince</h4>
-									<p class="mt-1 text-xs text-base-content/70">Son güncelleme: 21 Tem, 12:20</p>
-								</div>
-								<div class="ml-3">
-									<span
-										class="inline-flex items-center rounded-full bg-base-300 px-2 py-1 text-xs font-medium text-base-content"
-									>
-										251
-									</span>
-								</div>
-							</div>
-
-							<div
-								class="flex cursor-pointer items-center justify-between rounded-lg p-3 hover:bg-base-200"
-							>
-								<div class="flex-1">
-									<h4 class="text-sm font-medium text-base-content">özgür özel</h4>
-									<p class="mt-1 text-xs text-base-content/70">Son güncelleme: 20 Tem, 18:15</p>
-								</div>
-								<div class="ml-3">
-									<span
-										class="inline-flex items-center rounded-full bg-base-300 px-2 py-1 text-xs font-medium text-base-content"
-									>
-										1.187
-									</span>
-								</div>
-							</div>
-
-							<div
-								class="flex cursor-pointer items-center justify-between rounded-lg p-3 hover:bg-base-200"
-							>
-								<div class="flex-1">
-									<h4 class="text-sm font-medium text-base-content">kemal kılıçdaroğlu</h4>
-									<p class="mt-1 text-xs text-base-content/70">Son güncelleme: 20 Tem, 14:30</p>
-								</div>
-								<div class="ml-3">
-									<span
-										class="inline-flex items-center rounded-full bg-base-300 px-2 py-1 text-xs font-medium text-base-content"
-									>
-										9.881
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<TopicCard
+					title="Başlıklar"
+					currentPage={1}
+					totalPages={47}
+					onPrevious={handleTopicPrevious}
+					onNext={handleTopicNext}
+				>
+					{#each topics as topic}
+						<TopicItem
+							title={topic.title}
+							lastUpdate={topic.lastUpdate}
+							entryCount={topic.entryCount}
+							isActive={topic.isActive}
+							onClick={() => handleTopicClick(topic.id)}
+						/>
+					{/each}
+				</TopicCard>
 			</div>
 
 			<!-- Right Column - Content Details -->
@@ -587,24 +512,26 @@
 						<div class="card-body p-6">
 							<div class="mb-4 flex items-center justify-between">
 								<div>
-									<h4 class="text-base font-medium text-base-content">Ekşi Sözlük İstatistikleri</h4>
+									<h4 class="text-base font-medium text-base-content">
+										Ekşi Sözlük İstatistikleri
+									</h4>
 									<p class="text-sm text-base-content/70">Tarihe göre entry ve yazar dağılımları</p>
 								</div>
-								
+
 								<!-- Button Groups -->
 								<div class="flex items-center gap-2">
 									<!-- Chart Type Buttons -->
 									<div class="flex items-center rounded-lg border border-base-300 bg-white p-1">
-										<button class="btn btn-sm btn-ghost rounded-md">
+										<button class="btn rounded-md btn-ghost btn-sm">
 											<HugeiconsIcon icon={Chart01Icon} size={16} color="gray" />
 										</button>
-										<button class="btn btn-sm btn-primary rounded-md">
+										<button class="btn rounded-md btn-sm btn-primary">
 											<HugeiconsIcon icon={Chart01Icon} size={16} color="white" />
 										</button>
 									</div>
-									
+
 									<!-- Download Button -->
-									<button class="btn btn-sm btn-ghost rounded-md" aria-label="Download">
+									<button class="btn rounded-md btn-ghost btn-sm" aria-label="Download">
 										<HugeiconsIcon icon={DownloadIcon} size={16} color="gray" />
 									</button>
 								</div>

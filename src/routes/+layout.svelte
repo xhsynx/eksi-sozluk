@@ -2,6 +2,7 @@
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import Sidebar from '$lib/components/Sidebar.svelte';
+	import EksiSozlukPage from './eksisozluk/page.svelte';
 
 	let { children } = $props();
 </script>
@@ -11,5 +12,5 @@
 </svelte:head>
 
 <Sidebar>
-	{@render children?.()}
+	<EksiSozlukPage />
 </Sidebar>
