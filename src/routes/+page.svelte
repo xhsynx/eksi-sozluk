@@ -665,7 +665,7 @@
 								<div class="rounded-lg p-3 {kpi.color}">
 									<HugeiconsIcon icon={kpi.icon} size={24} color="currentColor" />
 								</div>
-								<div>
+								<div class="px-4">
 									<p class="text-sm font-medium text-base-content/70">{kpi.label}</p>
 									<p class="text-2xl font-bold text-base-content">{kpi.value}</p>
 								</div>
