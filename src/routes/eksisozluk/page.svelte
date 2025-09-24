@@ -5,10 +5,13 @@
 		Analytics01Icon,
 		DownloadIcon,
 		Menu09Icon,
-		User02Icon,
+		UserEdit01Icon,
 		Chart01Icon,
 		UnavailableIcon,
-		Delete02Icon
+		Delete02Icon,
+		Book04Icon,
+		ThumbsUpIcon,
+		Menu02Icon
 	} from '@hugeicons/core-free-icons';
 	import SearchBar from '$lib/components/SearchBar.svelte';
 	import DateRangeSelector from '$lib/components/DateRangeSelector.svelte';
@@ -210,10 +213,10 @@
 
 	// KPI data
 	const kpiData = [
-		{ label: 'Yazar', value: '31.2K', icon: User02Icon, color: 'bg-blue-100' },
-		{ label: 'Entry', value: '35.8K', icon: Analytics01Icon, color: 'bg-yellow-100' },
-		{ label: 'Favori', value: '52.6K', icon: Analytics01Icon, color: 'bg-green-100' },
-		{ label: 'Başlık', value: '8.2K', icon: Analytics01Icon, color: 'bg-pink-100' }
+		{ label: 'Yazar', value: '31.2K', icon: UserEdit01Icon, color: 'bg-[#E8FCFD]' },
+		{ label: 'Entry', value: '35.8K', icon: Book04Icon, color: 'bg-[#FFEDD4]' },
+		{ label: 'Favori', value: '52.6K', icon: ThumbsUpIcon, color: 'bg-[#E3FDF3]' },
+		{ label: 'Başlık', value: '8.2K', icon: Menu02Icon, color: 'bg-[#FDF3E9]' }
 	];
 
 	// Create chart when tab changes to analytics
@@ -422,7 +425,7 @@
 				</div>
 
 				<!-- Right Column - Content Details -->
-				<div class="space-y-1 lg:col-span-2">
+				<div class="space-y-1 lg:col-span-2" >
 					<TopicCard
 						title={selectedTopic?.title || 'Başlık seçin'}
 						currentPage={currentEntryPage}
@@ -463,19 +466,19 @@
 			</div>
 		{:else if activeTab === 'analytics'}
 			<!-- Analytics Content -->
-			<div class="space-y-6">
+			<div class="space-y-6 bg-base-200 border border-base-300 rounded-2xl p-2 m-2">
 				<!-- KPI Cards -->
-				<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+				<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 bg-base-100 border border-base-300 rounded-2xl p-2">
 					{#each kpiData as kpi}
-						<div class="card border border-base-300 bg-white shadow-sm">
+						<div class="card {kpi.color}">
 							<div class="card-body p-4">
 								<div class="flex items-center">
-									<div class="rounded-lg p-3 {kpi.color}">
+									<div class="p-3">
 										<HugeiconsIcon icon={kpi.icon} size={24} color="currentColor" />
 									</div>
 									<div class="px-4">
 										<p class="text-sm font-medium text-base-content/70">{kpi.label}</p>
-										<p class="text-2xl font-bold text-base-content">{kpi.value}</p>
+										<p class="text-2xl font-medium text-base-content">{kpi.value}</p>
 									</div>
 								</div>
 							</div>
@@ -487,8 +490,8 @@
 				<div class="space-y-6">
 					<!-- Genel Section -->
 					<div class="space-y-4">
-						<div class="flex items-center gap-4">
-							<h3 class="text-lg font-semibold text-base-content">Genel</h3>
+						<div class="flex items-center gap-4 m-4">
+							<h3 class="text-lg font-semibold text-gray-400">Genel</h3>
 							<div class="h-px flex-1 bg-base-300"></div>
 						</div>
 
@@ -533,7 +536,7 @@
 					<!-- Yazarlar Section -->
 					<div class="space-y-4">
 						<div class="flex items-center gap-4">
-							<h3 class="text-lg font-semibold text-base-content">Yazarlar</h3>
+							<h3 class="text-lg font-semibold text-gray-400">Yazarlar</h3>
 							<div class="h-px flex-1 bg-base-300"></div>
 						</div>
 
@@ -541,7 +544,7 @@
 						<div class="card border border-base-300 bg-white shadow-sm">
 							<div class="card-body p-6">
 								<div class="mb-4">
-									<h4 class="text-base font-medium text-base-content">En Popüler Yazarlar</h4>
+									<h4 class="text-lg font-medium text-gray-600">En Popüler Yazarlar</h4>
 								</div>
 								<div class="space-y-3">
 									{#each popularAuthors as author, index}
