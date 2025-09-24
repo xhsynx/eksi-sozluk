@@ -29,8 +29,8 @@
 		<div class="mb-3 flex items-center justify-between border-b border-base-300 pb-3">
 			<!-- Left: Title and Pagination -->
 			<div class="flex items-center space-x-4">
-				<h3 class="font-semibold text-base-content">{title}</h3>
-				<span class="text-sm text-base-content/70">{currentPage} / {totalPages}</span>
+				<h3 class="text-sm font-normal text-gray-600">{title}</h3>
+				<span class="text-sm font-normal text-gray-500">{currentPage} / {totalPages}</span>
 			</div>
 
 			<!-- Right: Navigation -->

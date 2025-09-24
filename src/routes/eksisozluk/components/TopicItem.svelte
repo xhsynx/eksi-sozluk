@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { HugeiconsIcon } from '@hugeicons/svelte';
-	import { Calendar01Icon, MoreHorizontalIcon } from '@hugeicons/core-free-icons';
+	import { Calendar01Icon, MoreVerticalIcon, ThumbsUpIcon } from '@hugeicons/core-free-icons';
 
 	// Props
 	let { 
@@ -43,17 +43,17 @@
 			: 'hover:bg-base-200'}"
 	>
 		<div class="flex-1">
-			<h4 class="text-sm font-medium {isActive ? 'text-green-800' : 'text-base-content'}">{title}</h4>
+			<h4 class="text-sm font-normal {isActive ? 'text-green-800' : 'text-gray-800'}">{title}</h4>
 			{#if lastUpdate}
 				<div class="mt-1 flex items-center space-x-1">
 					<HugeiconsIcon icon={Calendar01Icon} size={12} color="currentColor" />
-					<p class="text-xs {isActive ? 'text-green-600' : 'text-base-content/70'}">Son güncelleme: {lastUpdate}</p>
+					<p class="text-xs font-normal {isActive ? 'text-green-600' : 'text-gray-500'}">Son güncelleme: {lastUpdate}</p>
 				</div>
 			{/if}
 		</div>
 		<div class="ml-3">
 			<span
-				class="text-sm font-medium {isActive ? 'text-green-800' : 'text-base-content/70'}"
+				class="text-sm font-normal {isActive ? 'text-green-800' : 'text-gray-600'}"
 			>
 				{entryCount}
 			</span>
@@ -70,7 +70,7 @@
 			<!-- Left: Content -->
 			<div class="flex-1 pr-4">
 				<!-- Content Text -->
-				<p class="mb-3 text-sm leading-relaxed text-base-content">
+				<p class="mb-3 text-sm font-normal leading-relaxed text-gray-800">
 					{content}
 				</p>
 
@@ -78,31 +78,23 @@
 				<div class="flex items-center justify-between">
 					<!-- Left: Like Count -->
 					<div class="flex items-center space-x-1">
-						<svg
-							class="h-4 w-4 text-base-content/70"
-							fill="currentColor"
-							viewBox="0 0 20 20"
-						>
-							<path
-								d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.764a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"
-							></path>
-						</svg>
-						<span class="text-sm font-medium text-base-content/70">{likes}</span>
+						<HugeiconsIcon icon={ThumbsUpIcon} size={16} color="currentColor" />
+						<span class="text-sm font-normal text-gray-600">{likes}</span>
 					</div>
 
 					<!-- Right: Author, Time, Avatar, Actions -->
 					<div class="flex items-center space-x-3">
 						<!-- Author and Timestamp -->
 						<div class="flex flex-col items-center space-x-2">
-							<span class="text-sm font-semibold text-base-content">{author}</span>
-							<span class="text-xs text-base-content/70">{lastUpdate}</span>
+							<span class="text-sm font-normal text-gray-800">{author}</span>
+							<span class="text-xs font-normal text-gray-500">{lastUpdate}</span>
 						</div>
 
 						<!-- Avatar -->
 						<div
-							class="flex h-8 w-8 items-center justify-center rounded-full bg-primary"
+							class="flex h-12 w-12 items-center justify-center rounded-full bg-primary"
 						>
-							<span class="text-sm text-primary-content">{avatar}</span>
+							<span class="text-sm font-normal text-primary-content">{avatar}</span>
 						</div>
 
 						<!-- Checkbox -->
@@ -115,7 +107,7 @@
 
 						<!-- Actions -->
 						<button class="btn btn-ghost btn-sm" aria-label="More actions">
-							<HugeiconsIcon icon={MoreHorizontalIcon} size={16} color="currentColor" />
+							<HugeiconsIcon icon={MoreVerticalIcon} size={16} color="currentColor" />
 						</button>
 					</div>
 				</div>
