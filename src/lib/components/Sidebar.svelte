@@ -82,22 +82,22 @@
 	const leftButtons = [
 		{
 			icon: Attachment01Icon,
-			class: 'text-white',
+			class: 'text-white centered',
 			onClick: () => console.log('Logo clicked')
 		},
 		{
 			icon: Analytics01Icon,
-			class: 'text-white',
+			class: 'text-white centered',
 			onClick: () => console.log('Analytics clicked')
 		},
-		{ icon: PuzzleIcon, class: 'text-gray-600', onClick: () => console.log('Cloud clicked') },
-		{ icon: SidebarLeftIcon, class: 'text-gray-600', onClick: toggleSidebar },
+		{ icon: PuzzleIcon, class: 'text-gray-600 centered', onClick: () => console.log('Cloud clicked') },
+		{ icon: SidebarLeftIcon, class: 'text-gray-600 centered', onClick: toggleSidebar },
 		{
 			icon: Notification01Icon,
-			class: 'text-gray-600',
+			class: 'text-gray-600 centered',
 			onClick: () => console.log('Notifications clicked')
 		},
-		{ icon: Moon02Icon, class: 'text-gray-600', onClick: toggleTheme }
+		{ icon: Moon02Icon, class: 'text-gray-600 centered', onClick: toggleTheme }
 	];
 </script>
 
