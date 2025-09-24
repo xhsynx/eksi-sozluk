@@ -26,7 +26,7 @@
 	}
 </script>
 
-<div class="container mx-auto p-6" style="background-color: #F4F4F5; min-height: 100vh;">
+<div class="container mx-auto p-6">
 	<!-- Search and Filter Bar -->
 	<div class="mb-8 flex items-center gap-4">
 		<!-- Search Bar -->
