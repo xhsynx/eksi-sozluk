@@ -220,9 +220,8 @@
 					<!-- Delete Button -->
 					<ButtonIcon
 						text="Seçimi Temizle"
-						variant="default"
 						type="text"
-						size="sm"
+						class="sm bg-transparent"
 						onClick={() => (selectedItems = new Set())}
 					/>
 				</div>
@@ -233,8 +232,8 @@
 					<ButtonIcon
 						icon={LockIcon}
 						text="Engelle"
-						variant="warning"
-						size="sm"
+						class="btn rounded-full sm bg-orange-500"
+						type="button"
 						onClick={() => console.log('Engelle clicked')}
 					/>
 
@@ -242,8 +241,8 @@
 					<ButtonIcon
 						icon={Delete01Icon}
 						text="Sil"
-						variant="danger"
-						size="sm"
+						class="btn rounded-full sm bg-red-500"
+						type="button"
 						onClick={() => console.log('Sil clicked')}
 					/>
 				</div>
