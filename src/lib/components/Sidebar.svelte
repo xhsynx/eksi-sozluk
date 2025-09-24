@@ -117,7 +117,7 @@
 		<label for="my-drawer" class="drawer-overlay"></label>
 		<aside class="flex min-h-full {isCollapsed ? 'w-16' : 'w-80'} transition-all duration-300">
 			<!-- Left Vertical Button Structure -->
-			<div class="flex w-16 flex-col items-center gap-4 bg-base-300 py-4">
+			<div class="flex w-16 flex-col items-center gap-4 dark:bg-base-500 py-4">
 				<!-- Top 3 Buttons -->
 				{#each leftButtons.slice(0, 3) as button, index}
 					<div
@@ -125,7 +125,7 @@
 							? 'bg-black'
 							: index === 1
 								? 'bg-blue-500'
-								: 'border-2 border-gray-300 bg-white'}"
+								: 'border-2 border-gray-300 bg-white dark:bg-base-500'}"
 					>
 						<ButtonIcon
 							icon={button.icon}
