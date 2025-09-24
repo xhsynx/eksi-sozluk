@@ -44,12 +44,13 @@
 
 	<!-- Dropdown Menu -->
 	{#if isOpen}
-		<div class="absolute top-full left-0 right-0 z-50 mt-1 rounded-lg border border-gray-200 bg-white shadow-lg">
+		<div class="absolute top-full left-0 right-0 z-50 mt-1 rounded-lg border border-gray-200 bg-base-100 shadow-lg">
 			<div class="p-2">
 				{#each dateRanges as range}
 					<button
 						onclick={() => selectRange(range.label)}
-						class="w-full rounded-md px-2 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 {range.label ===
+						class="w-full rounded-md px-2 py-2 text-left text-sm text-base-400
+						 hover:bg-gray-100 {range.label ===
 						selectedRange
 							? 'bg-gray-100 font-medium'
 							: ''}"

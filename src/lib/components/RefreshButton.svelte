@@ -21,7 +21,7 @@
 	<button
 		onclick={handleClick}
 		disabled={loading}
-		class="btn rounded-full border-gray-300 bg-gray-200 px-6 text-gray-700 hover:border-gray-400 hover:bg-gray-300 {height} {loading ? 'opacity-50 cursor-not-allowed' : ''}"
+		class="btn rounded-full border-gray-300 bg-gray-200 px-6 text-base-400 hover:border-gray-400 hover:bg-gray-300 {height} {loading ? 'opacity-50 cursor-not-allowed' : ''}"
 	>
 		{#if loading}
 			<div class="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"></div>

@@ -288,8 +288,8 @@
 			<div class="mb-4 flex items-center gap-4">
 				<!-- Selection Info -->
 				<div class="flex items-center gap-3">
-					<span class="text-sm text-gray-600">
-						<span class="font-semibold text-gray-800">{selectedItems.size}</span> entry seçildi
+					<span class="text-sm text-base-400">
+						<span class="font-semibold text-base-400">{selectedItems.size}</span> entry seçildi
 					</span>
 					<!-- Clear Selection Link -->
 					<button
@@ -477,8 +477,8 @@
 										<HugeiconsIcon icon={kpi.icon} size={24} color="currentColor" />
 									</div>
 									<div class="px-4">
-										<p class="text-sm font-medium text-base-content/70">{kpi.label}</p>
-										<p class="text-2xl font-medium text-base-content">{kpi.value}</p>
+										<p class="text-sm font-medium text-base-400">{kpi.label}</p>
+										<p class="text-2xl font-medium text-base-400">{kpi.value}</p>
 									</div>
 								</div>
 							</div>
@@ -491,7 +491,7 @@
 					<!-- Genel Section -->
 					<div class="space-y-4">
 						<div class="flex items-center gap-4 m-4">
-							<h3 class="text-lg font-semibold text-gray-400">Genel</h3>
+							<h3 class="text-lg font-semibold text-base-400">Genel</h3>
 							<div class="h-px flex-1 bg-base-300"></div>
 						</div>
 
@@ -536,7 +536,7 @@
 					<!-- Yazarlar Section -->
 					<div class="space-y-4">
 						<div class="flex items-center gap-4">
-							<h3 class="text-lg font-semibold text-gray-400">Yazarlar</h3>
+							<h3 class="text-lg font-semibold text-base-400">Yazarlar</h3>
 							<div class="h-px flex-1 bg-base-300"></div>
 						</div>
 
@@ -544,7 +544,7 @@
 						<div class="card border border-base-300 bg-white shadow-sm">
 							<div class="card-body p-6">
 								<div class="mb-4">
-									<h4 class="text-lg font-medium text-gray-600">En Popüler Yazarlar</h4>
+									<h4 class="text-lg font-medium text-base-400">En Popüler Yazarlar</h4>
 								</div>
 								<div class="space-y-3">
 									{#each popularAuthors as author, index}

@@ -45,7 +45,7 @@
 				{#each sortOptions as option}
 					<button
 						onclick={() => selectSort(option.label)}
-						class="w-full rounded-md px-2 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 {option.label ===
+						class="w-full rounded-md px-2 py-2 text-left text-sm text-base-400 hover:bg-gray-100 {option.label ===
 						selectedSort
 							? 'bg-gray-100 font-medium'
 							: ''}"

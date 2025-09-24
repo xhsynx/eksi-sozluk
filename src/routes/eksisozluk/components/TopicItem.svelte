@@ -43,17 +43,17 @@
 			: 'hover:bg-base-200'}"
 	>
 		<div class="flex-1">
-			<h4 class="text-sm font-normal {isActive ? 'text-green-800' : 'text-gray-800'}">{title}</h4>
+			<h4 class="text-sm font-normal {isActive ? 'text-green-800' : 'text-base-400'}">{title}</h4>
 			{#if lastUpdate}
 				<div class="mt-1 flex items-center space-x-1">
 					<HugeiconsIcon icon={Calendar01Icon} size={12} color="currentColor" />
-					<p class="text-xs font-normal {isActive ? 'text-green-600' : 'text-gray-500'}">Son güncelleme: {lastUpdate}</p>
+					<p class="text-xs font-normal {isActive ? 'text-green-600' : 'text-base-400'}">Son güncelleme: {lastUpdate}</p>
 				</div>
 			{/if}
 		</div>
 		<div class="ml-3">
 			<span
-				class="text-sm font-normal {isActive ? 'text-green-800' : 'text-gray-600'}"
+				class="text-sm font-normal {isActive ? 'text-green-800' : 'text-base-400'}"
 			>
 				{entryCount}
 			</span>
@@ -70,7 +70,7 @@
 			<!-- Left: Content -->
 			<div class="flex-1 pr-4">
 				<!-- Content Text -->
-				<p class="mb-3 text-sm font-normal leading-relaxed text-gray-800">
+				<p class="mb-3 text-sm font-normal leading-relaxed text-base-400">
 					{content}
 				</p>
 
@@ -79,15 +79,15 @@
 					<!-- Left: Like Count -->
 					<div class="flex items-center space-x-1">
 						<HugeiconsIcon icon={ThumbsUpIcon} size={16} color="currentColor" />
-						<span class="text-sm font-normal text-gray-600">{likes}</span>
+						<span class="text-sm font-normal text-base-400">{likes}</span>
 					</div>
 
 					<!-- Right: Author, Time, Avatar, Actions -->
 					<div class="flex items-center space-x-3">
 						<!-- Author and Timestamp -->
 						<div class="flex flex-col items-center space-x-2">
-							<span class="text-sm font-normal text-gray-800">{author}</span>
-							<span class="text-xs font-normal text-gray-500">{lastUpdate}</span>
+							<span class="text-sm font-normal text-base-400">{author}</span>
+							<span class="text-xs font-normal text-base-400">{lastUpdate}</span>
 						</div>
 
 						<!-- Avatar -->

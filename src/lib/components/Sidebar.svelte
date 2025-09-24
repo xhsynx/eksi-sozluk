@@ -90,14 +90,14 @@
 			class: 'text-white centered',
 			onClick: () => console.log('Analytics clicked')
 		},
-		{ icon: PuzzleIcon, class: 'text-gray-600 centered', onClick: () => console.log('Cloud clicked') },
-		{ icon: SidebarLeftIcon, class: 'text-gray-600 centered', onClick: toggleSidebar },
+		{ icon: PuzzleIcon, class: 'text-base-400 centered', onClick: () => console.log('Cloud clicked') },
+		{ icon: SidebarLeftIcon, class: 'text-base-400 centered', onClick: toggleSidebar },
 		{
 			icon: Notification01Icon,
-			class: 'text-gray-600 centered',
+			class: 'text-base-400 centered',
 			onClick: () => console.log('Notifications clicked')
 		},
-		{ icon: Moon02Icon, class: 'text-gray-600 centered', onClick: toggleTheme }
+		{ icon: Moon02Icon, class: 'text-base-400 centered', onClick: toggleTheme }
 	];
 </script>
 
@@ -125,7 +125,7 @@
 							? 'bg-black'
 							: index === 1
 								? 'bg-blue-500'
-								: 'border-2 border-gray-300 bg-white dark:bg-base-500'}"
+								: 'border-2 border-base-100 bg-white dark:bg-base-500'}"
 					>
 						<ButtonIcon
 							icon={button.icon}
