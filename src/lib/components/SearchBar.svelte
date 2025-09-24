@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { HugeiconsIcon } from '@hugeicons/svelte';
-	import { Search01Icon } from '@hugeicons/core-free-icons';
+	import { Search01Icon, Clock01Icon } from '@hugeicons/core-free-icons';
 
 	// Props
 	let { 
@@ -9,6 +9,36 @@
 		width = 'w-80',
 		height = 'py-2'
 	} = $props();
+
+	// Internal state
+	let isOpen = $state(false);
+
+	// Recent searches (mock data)
+	const recentSearches = [
+		'Kemal Kılıçdaroğlu',
+		'Ekonomi',
+		'Teknoloji',
+		'Spor',
+		'Eğitim'
+	];
+
+	// Handle search selection
+	function selectSearch(searchTerm: string) {
+		value = searchTerm;
+		isOpen = false;
+	}
+
+	// Handle input click
+	function handleInputClick() {
+		isOpen = true;
+	}
+
+	// Handle input blur with delay to allow clicking on dropdown
+	function handleInputBlur() {
+		setTimeout(() => {
+			isOpen = false;
+		}, 200);
+	}
 </script>
 
 <div class="{width}">
@@ -20,6 +50,8 @@
 			type="text"
 			bind:value
 			{placeholder}
+			onclick={handleInputClick}
+			onblur={handleInputBlur}
 			class="w-full rounded-full border border-gray-200 bg-white px-10 {height} text-gray-700 placeholder-gray-500 shadow-sm focus:border-gray-300 focus:outline-none"
 		/>
 		<div class="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -28,5 +60,25 @@
 				></path>
 			</svg>
 		</div>
+
+		<!-- Dropdown Menu -->
+		{#if isOpen}
+			<div class="absolute top-full left-0 right-0 z-50 mt-1 rounded-lg border border-gray-200 bg-white shadow-lg">
+				<div class="p-2">
+					<div class="mb-2 flex items-center gap-2 px-2 py-1 text-xs font-medium text-gray-500">
+						<HugeiconsIcon icon={Clock01Icon} size={14} color="currentColor" />
+						<span>Son Aramalar</span>
+					</div>
+					{#each recentSearches as search}
+						<button
+							onclick={() => selectSearch(search)}
+							class="w-full rounded-md px-2 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+						>
+							{search}
+						</button>
+					{/each}
+				</div>
+			</div>
+		{/if}
 	</div>
 </div>

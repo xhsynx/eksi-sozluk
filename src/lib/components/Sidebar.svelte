@@ -101,7 +101,7 @@
 	];
 </script>
 
-<div class="drawer lg:drawer-open">
+<div class="drawer lg:drawer-open bg-base-300">
 	<input type="checkbox" id="my-drawer" class="drawer-toggle" />
 
 	<!-- Page content here -->

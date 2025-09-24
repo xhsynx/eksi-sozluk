@@ -5,11 +5,10 @@
 		Analytics01Icon,
 		DownloadIcon,
 		Menu09Icon,
-		MoreHorizontalIcon,
 		User02Icon,
 		Chart01Icon,
-		LockIcon,
-		Delete01Icon
+		UnavailableIcon,
+		Delete02Icon
 	} from '@hugeicons/core-free-icons';
 	import SearchBar from '$lib/components/SearchBar.svelte';
 	import DateRangeSelector from '$lib/components/DateRangeSelector.svelte';
@@ -30,10 +29,19 @@
 	// Date range state
 	let selectedDateRange = $state('Son 7 gün');
 
+	// Refresh state
+	let isRefreshing = $state(false);
+
 	// Refresh function
-	function handleRefresh() {
+	async function handleRefresh() {
 		console.log('Refreshing data...');
-		// Add your refresh logic here
+		isRefreshing = true;
+		try {
+			// Reload topics from API
+			await loadTopics(currentPage);
+		} finally {
+			isRefreshing = false;
+		}
 	}
 
 	// Detail filter function
@@ -260,11 +268,11 @@
 		<div class="flex-1"></div>
 
 		<!-- Refresh Button -->
-		<RefreshButton onClick={handleRefresh} />
+		<RefreshButton onClick={handleRefresh} loading={isRefreshing} />
 	</div>
 
 	<!-- Ekşi Sözlük Header Card -->
-	<div class="mb-6 rounded-lg border border-base-300 bg-base-200 p-6 shadow-sm">
+	<div class="mb-6 rounded-2xl border border-base-300 bg-base-100 p-6 shadow-sm">
 		<!-- Title Section -->
 		<div class="mb-4 flex items-center gap-3">
 			<HugeiconsIcon icon={RainDropIcon} size={30} color="gray" />
@@ -277,32 +285,34 @@
 			<div class="mb-4 flex items-center gap-4">
 				<!-- Selection Info -->
 				<div class="flex items-center gap-3">
-					<span class="text-sm text-base-content/70">{selectedItems.size} entry seçildi</span>
-					<!-- Delete Button -->
-					<ButtonIcon
-						text="Seçimi Temizle"
-						type="text"
-						class="sm bg-transparent"
-						onClick={() => (selectedItems = new Set())}
-					/>
+					<span class="text-sm text-gray-600">
+						<span class="font-semibold text-gray-800">{selectedItems.size}</span> entry seçildi
+					</span>
+					<!-- Clear Selection Link -->
+					<button
+						onclick={() => (selectedItems = new Set())}
+						class="text-sm text-blue-600 hover:text-blue-800"
+					>
+						Seçimi Temizle
+					</button>
 				</div>
 
 				<!-- Action Buttons for Selected Items - All aligned to left -->
 				<div class="flex items-center gap-3">
 					<!-- Block Button -->
 					<ButtonIcon
-						icon={LockIcon}
+						icon={UnavailableIcon}
 						text="Engelle"
-						class="btn rounded-full sm bg-orange-500"
+						class="flex items-center justify-center rounded-lg bg-gray-200 px-4 py-2 text-red-600 hover:bg-gray-300"
 						type="button"
 						onClick={() => console.log('Engelle clicked')}
 					/>
 
 					<!-- Delete Button -->
 					<ButtonIcon
-						icon={Delete01Icon}
+						icon={Delete02Icon}
 						text="Sil"
-						class="btn rounded-full sm bg-red-500"
+						class="flex items-center justify-center rounded-lg bg-red-500 px-4 py-2 text-white hover:bg-red-600"
 						type="button"
 						onClick={() => console.log('Sil clicked')}
 					/>
@@ -326,231 +336,237 @@
 		{/if}
 	</div>
 
-	<!-- Tab Navigation -->
-	<div class="mb-6">
-		<div
-			class="flex items-center justify-between rounded-lg border border-base-300 bg-base-100 p-2"
-		>
-			<!-- Left Half: İçerikler Tab -->
-			<div class="flex flex-1 justify-center">
-				<div role="tablist" class="tabs-lift tabs w-full">
-					<button
-						role="tab"
-						class="tab flex w-full items-center justify-center space-x-3 px-8 py-4 text-lg {activeTab ===
-						'contents'
-							? 'tab-active'
-							: ''}"
-						onclick={() => (activeTab = 'contents')}
-					>
-						<HugeiconsIcon
-							icon={Menu09Icon}
-							size={24}
-							color={activeTab === 'contents' ? 'blue' : 'gray'}
-						/>
-						<span class="font-medium">İçerikler</span>
-					</button>
-				</div>
-			</div>
-
-			<!-- Right Half: Analitik Tab -->
-			<div class="flex flex-1 justify-center">
-				<div role="tablist" class="tabs-lift tabs w-full">
-					<button
-						role="tab"
-						class="tab flex w-full items-center justify-center space-x-3 px-8 py-4 text-lg {activeTab ===
-						'analytics'
-							? 'tab-active'
-							: ''}"
-						onclick={() => (activeTab = 'analytics')}
-					>
-						<HugeiconsIcon
-							icon={Analytics01Icon}
-							size={24}
-							color={activeTab === 'analytics' ? 'blue' : 'gray'}
-						/>
-						<span class="font-medium">Analitik</span>
-					</button>
-				</div>
-			</div>
-
-			<!-- Download Button - Far Right -->
-			<button class="btn rounded-md btn-ghost btn-lg" aria-label="Download">
-				<HugeiconsIcon icon={DownloadIcon} size={20} color="gray" />
-			</button>
-		</div>
-	</div>
-
-	<!-- Content Area -->
-	{#if activeTab === 'contents'}
-		<div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-			<!-- Left Column - Topics List -->
-			<div class="space-y-3">
-				<TopicCard
-					title="Başlıklar"
-					currentPage={currentPage}
-					totalPages={totalPages}
-					onPrevious={handleTopicPrevious}
-					onNext={handleTopicNext}
-				>
-					{#if topicsLoading}
-						<div class="flex items-center justify-center py-8">
-							<div class="loading loading-spinner loading-md"></div>
-						</div>
-					{:else}
-						{#each topics as topic}
-							<TopicItem
-								title={topic.title}
-								entryCount={topic.likes}
-								isActive={selectedTopic?.id === topic.id}
-								onClick={() => handleTopicClick(topic.id)}
+	<!-- Tabs Section -->
+	<div class="rounded-3xl bg-base-100 p-2 border border-base-300 ">
+		<!-- Tab Navigation -->
+			<div
+				class="flex items-center justify-between rounded-full bg-base-100"
+			>
+				<!-- Left Half: İçerikler Tab -->
+				<div class="flex flex-1 justify-center p-4">
+					<div role="tablist" class="tabs-lift tabs w-full">
+						<button
+							role="tab"
+							class="tab flex w-full items-center justify-center space-x-3 px-8 py-4 text-lg {activeTab ===
+							'contents'
+								? 'tab-active'
+								: ''}"
+							onclick={() => (activeTab = 'contents')}
+						>
+							<HugeiconsIcon
+								icon={Menu09Icon}
+								size={24}
+								color={activeTab === 'contents' ? 'blue' : 'gray'}
 							/>
-						{/each}
-					{/if}
-				</TopicCard>
+							<span class="font-medium">İçerikler</span>
+						</button>
+					</div>
+				</div>
+
+				<!-- Right Half: Analitik Tab -->
+				<div class="flex flex-1 justify-center">
+					<div role="tablist" class="tabs-lift tabs w-full">
+						<button
+							role="tab"
+							class="tab flex w-full items-center justify-center space-x-3 px-8 py-4 text-lg {activeTab ===
+							'analytics'
+								? 'tab-active'
+								: ''}"
+							onclick={() => (activeTab = 'analytics')}
+						>
+							<HugeiconsIcon
+								icon={Analytics01Icon}
+								size={24}
+								color={activeTab === 'analytics' ? 'blue' : 'gray'}
+							/>
+							<span class="font-medium">Analitik</span>
+						</button>
+					</div>
+				</div>
+
+				<!-- Download Button - Far Right -->
+				<button class="btn rounded-md btn-ghost btn-lg" aria-label="Download">
+					<HugeiconsIcon icon={DownloadIcon} size={20} color="gray" />
+				</button>
 			</div>
 
-			<!-- Right Column - Content Details -->
-			<div class="space-y-3">
-				<TopicCard
-					title={selectedTopic?.title || 'Başlık seçin'}
-					currentPage={currentEntryPage}
-					totalPages={totalEntryPages}
-					onPrevious={handleEntryPrevious}
-					onNext={handleEntryNext}
-				>
-					{#if selectedTopic}
-						{#if entriesLoading}
+
+		<!-- Content Area -->
+		{#if activeTab === 'contents'}
+			<div class="grid grid-cols-1 gap-3 bg-base-200 border border-base-300 lg:grid-cols-3 p-2 rounded-2xl m-2">
+				<!-- Left Column - Topics List -->
+				<div class="space-y-1 lg:col-span-1">
+					<TopicCard
+						title="Başlıklar"
+						{currentPage}
+						{totalPages}
+						onPrevious={handleTopicPrevious}
+						onNext={handleTopicNext}
+						class="w-full rounded-2xl"
+					>
+						{#if topicsLoading}
 							<div class="flex items-center justify-center py-8">
-								<div class="loading loading-spinner loading-md"></div>
+								<div class="loading loading-md loading-spinner"></div>
 							</div>
 						{:else}
-							{#each entries as entry, i}
+							{#each topics as topic}
 								<TopicItem
-									type="detail"
-									content={entry.content}
-									author={entry.user.name}
-									lastUpdate={formatDate(entry.date)}
-									likes={entry.likes}
-									avatar={entry.user.avatar}
-									isSelected={selectedItems.has(i)}
-									onToggleSelection={() => toggleSelection(i)}
+									title={topic.title}
+									entryCount={topic.likes}
+									isActive={selectedTopic?.id === topic.id}
+									onClick={() => handleTopicClick(topic.id)}
 								/>
 							{/each}
 						{/if}
-					{:else}
-						<div class="flex items-center justify-center py-12">
-							<div class="text-center">
-								<div class="text-4xl mb-4">📝</div>
-								<p class="text-base-content/70">Sol taraftan bir başlık seçin</p>
-							</div>
-						</div>
-					{/if}
-				</TopicCard>
-			</div>
-		</div>
-	{:else if activeTab === 'analytics'}
-		<!-- Analytics Content -->
-		<div class="space-y-6">
-			<!-- KPI Cards -->
-			<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-				{#each kpiData as kpi}
-					<div class="card border border-base-300 bg-white shadow-sm">
-						<div class="card-body p-4">
-							<div class="flex items-center">
-								<div class="rounded-lg p-3 {kpi.color}">
-									<HugeiconsIcon icon={kpi.icon} size={24} color="currentColor" />
-								</div>
-								<div class="px-4">
-									<p class="text-sm font-medium text-base-content/70">{kpi.label}</p>
-									<p class="text-2xl font-bold text-base-content">{kpi.value}</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				{/each}
-			</div>
-
-			<!-- Main Content - Single Column -->
-			<div class="space-y-6">
-				<!-- Genel Section -->
-				<div class="space-y-4">
-					<div class="flex items-center gap-4">
-						<h3 class="text-lg font-semibold text-base-content">Genel</h3>
-						<div class="h-px flex-1 bg-base-300"></div>
-					</div>
-
-					<!-- Statistics Chart Card -->
-					<div class="card border border-base-300 bg-white shadow-sm">
-						<div class="card-body p-6">
-							<div class="mb-4 flex items-center justify-between">
-								<div>
-									<h4 class="text-base font-medium text-base-content">
-										Ekşi Sözlük İstatistikleri
-									</h4>
-									<p class="text-sm text-base-content/70">Tarihe göre entry ve yazar dağılımları</p>
-								</div>
-
-								<!-- Button Groups -->
-								<div class="flex items-center gap-2">
-									<!-- Chart Type Buttons -->
-									<div class="flex items-center rounded-lg border border-base-300 bg-white p-1">
-										<button class="btn rounded-md btn-ghost btn-sm">
-											<HugeiconsIcon icon={Chart01Icon} size={16} color="gray" />
-										</button>
-										<button class="btn rounded-md btn-sm btn-primary">
-											<HugeiconsIcon icon={Chart01Icon} size={16} color="white" />
-										</button>
-									</div>
-
-									<!-- Download Button -->
-									<button class="btn rounded-md btn-ghost btn-sm" aria-label="Download">
-										<HugeiconsIcon icon={DownloadIcon} size={16} color="gray" />
-									</button>
-								</div>
-							</div>
-							<div class="h-80">
-								<canvas bind:this={chartCanvas}></canvas>
-							</div>
-						</div>
-					</div>
+					</TopicCard>
 				</div>
 
-				<!-- Yazarlar Section -->
-				<div class="space-y-4">
-					<div class="flex items-center gap-4">
-						<h3 class="text-lg font-semibold text-base-content">Yazarlar</h3>
-						<div class="h-px flex-1 bg-base-300"></div>
-					</div>
-
-					<!-- Popular Authors Card -->
-					<div class="card border border-base-300 bg-white shadow-sm">
-						<div class="card-body p-6">
-							<div class="mb-4">
-								<h4 class="text-base font-medium text-base-content">En Popüler Yazarlar</h4>
-							</div>
-							<div class="space-y-3">
-								{#each popularAuthors as author, index}
-									<div class="flex items-center justify-between rounded-lg p-3 hover:bg-base-100">
-										<div class="flex items-center space-x-3">
-											<div
-												class="flex h-8 w-8 items-center justify-center rounded-full bg-base-200 text-sm font-medium text-base-content"
-											>
-												{index + 1}
-											</div>
-											<span class="font-medium text-base-content">{author.name}</span>
-										</div>
-										<div
-											class="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700"
-										>
-											{author.entries} entry
-										</div>
-									</div>
+				<!-- Right Column - Content Details -->
+				<div class="space-y-1 lg:col-span-2">
+					<TopicCard
+						title={selectedTopic?.title || 'Başlık seçin'}
+						currentPage={currentEntryPage}
+						totalPages={totalEntryPages}
+						onPrevious={handleEntryPrevious}
+						onNext={handleEntryNext}
+						class="w-full rounded-2xl"
+					>
+						{#if selectedTopic}
+							{#if entriesLoading}
+								<div class="flex items-center justify-center py-8">
+									<div class="loading loading-md loading-spinner"></div>
+								</div>
+							{:else}
+								{#each entries as entry, i}
+									<TopicItem
+										type="detail"
+										content={entry.content}
+										author={entry.user.name}
+										lastUpdate={formatDate(entry.date)}
+										likes={entry.likes}
+										avatar={entry.user.avatar}
+										isSelected={selectedItems.has(i)}
+										onToggleSelection={() => toggleSelection(i)}
+									/>
 								{/each}
+							{/if}
+						{:else}
+							<div class="flex items-center justify-center py-12">
+								<div class="text-center">
+									<div class="mb-4 text-4xl">📝</div>
+									<p class="text-base-content/70">Sol taraftan bir başlık seçin</p>
+								</div>
+							</div>
+						{/if}
+					</TopicCard>
+				</div>
+			</div>
+		{:else if activeTab === 'analytics'}
+			<!-- Analytics Content -->
+			<div class="space-y-6">
+				<!-- KPI Cards -->
+				<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+					{#each kpiData as kpi}
+						<div class="card border border-base-300 bg-white shadow-sm">
+							<div class="card-body p-4">
+								<div class="flex items-center">
+									<div class="rounded-lg p-3 {kpi.color}">
+										<HugeiconsIcon icon={kpi.icon} size={24} color="currentColor" />
+									</div>
+									<div class="px-4">
+										<p class="text-sm font-medium text-base-content/70">{kpi.label}</p>
+										<p class="text-2xl font-bold text-base-content">{kpi.value}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					{/each}
+				</div>
+
+				<!-- Main Content - Single Column -->
+				<div class="space-y-6">
+					<!-- Genel Section -->
+					<div class="space-y-4">
+						<div class="flex items-center gap-4">
+							<h3 class="text-lg font-semibold text-base-content">Genel</h3>
+							<div class="h-px flex-1 bg-base-300"></div>
+						</div>
+
+						<!-- Statistics Chart Card -->
+						<div class="card border border-base-300 bg-white shadow-sm">
+							<div class="card-body p-6">
+								<div class="mb-4 flex items-center justify-between">
+									<div>
+										<h4 class="text-base font-medium text-base-content">
+											Ekşi Sözlük İstatistikleri
+										</h4>
+										<p class="text-sm text-base-content/70">
+											Tarihe göre entry ve yazar dağılımları
+										</p>
+									</div>
+
+									<!-- Button Groups -->
+									<div class="flex items-center gap-2">
+										<!-- Chart Type Buttons -->
+										<div class="flex items-center rounded-lg border border-base-300 bg-white p-1">
+											<button class="btn rounded-md btn-ghost btn-sm">
+												<HugeiconsIcon icon={Chart01Icon} size={16} color="gray" />
+											</button>
+											<button class="btn rounded-md btn-sm btn-primary">
+												<HugeiconsIcon icon={Chart01Icon} size={16} color="white" />
+											</button>
+										</div>
+
+										<!-- Download Button -->
+										<button class="btn rounded-md btn-ghost btn-sm" aria-label="Download">
+											<HugeiconsIcon icon={DownloadIcon} size={16} color="gray" />
+										</button>
+									</div>
+								</div>
+								<div class="h-80">
+									<canvas bind:this={chartCanvas}></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Yazarlar Section -->
+					<div class="space-y-4">
+						<div class="flex items-center gap-4">
+							<h3 class="text-lg font-semibold text-base-content">Yazarlar</h3>
+							<div class="h-px flex-1 bg-base-300"></div>
+						</div>
+
+						<!-- Popular Authors Card -->
+						<div class="card border border-base-300 bg-white shadow-sm">
+							<div class="card-body p-6">
+								<div class="mb-4">
+									<h4 class="text-base font-medium text-base-content">En Popüler Yazarlar</h4>
+								</div>
+								<div class="space-y-3">
+									{#each popularAuthors as author, index}
+										<div class="flex items-center justify-between rounded-lg p-3 hover:bg-base-100">
+											<div class="flex items-center space-x-3">
+												<div
+													class="flex h-8 w-8 items-center justify-center rounded-full bg-base-200 text-sm font-medium text-base-content"
+												>
+													{index + 1}
+												</div>
+												<span class="font-medium text-base-content">{author.name}</span>
+											</div>
+											<div
+												class="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700"
+											>
+												{author.entries} entry
+											</div>
+										</div>
+									{/each}
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	{/if}
+		{/if}
+	</div>
 </div>

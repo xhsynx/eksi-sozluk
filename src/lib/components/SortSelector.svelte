@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { HugeiconsIcon } from '@hugeicons/svelte';
-	import { Sorting01Icon, ArrowDown01Icon } from '@hugeicons/core-free-icons';
+	import { ArrowUpDownIcon, ArrowDown01Icon } from '@hugeicons/core-free-icons';
 
 	// Props
 	let { 
@@ -33,27 +33,27 @@
 		onclick={() => (isOpen = !isOpen)}
 		class="flex items-center gap-2 rounded-full border border-blue-300 bg-blue-100 px-4 py-2 text-blue-700 hover:bg-blue-200 transition-colors {height}"
 	>
-		<HugeiconsIcon icon={Sorting01Icon} size={16} color="currentColor" />
+		<HugeiconsIcon icon={ArrowUpDownIcon} size={16} color="currentColor" />
 		<span class="text-sm font-medium">{selectedSort}</span>
 		<HugeiconsIcon icon={ArrowDown01Icon} size={16} color="currentColor" />
 	</button>
 
 	<!-- Dropdown Menu -->
 	{#if isOpen}
-		<div
-			class="absolute top-full right-0 left-0 z-50 mt-1 rounded-lg border border-base-300 bg-base-100 shadow-lg"
-		>
-			{#each sortOptions as option}
-				<button
-					onclick={() => selectSort(option.label)}
-					class="w-full px-4 py-2 text-left text-base-content first:rounded-t-lg last:rounded-b-lg hover:bg-base-200 {option.label ===
-					selectedSort
-						? 'bg-primary text-primary-content font-semibold'
-						: ''}"
-				>
-					{option.label}
-				</button>
-			{/each}
+		<div class="absolute top-full left-0 right-0 z-50 mt-1 rounded-lg border border-gray-200 bg-white shadow-lg">
+			<div class="p-2">
+				{#each sortOptions as option}
+					<button
+						onclick={() => selectSort(option.label)}
+						class="w-full rounded-md px-2 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 {option.label ===
+						selectedSort
+							? 'bg-gray-100 font-medium'
+							: ''}"
+					>
+						{option.label}
+					</button>
+				{/each}
+			</div>
 		</div>
 	{/if}
 </div>

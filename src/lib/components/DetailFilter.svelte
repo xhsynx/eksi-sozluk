@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { HugeiconsIcon } from '@hugeicons/svelte';
-	import { FilterIcon } from '@hugeicons/core-free-icons';
+	import { SearchAreaIcon } from '@hugeicons/core-free-icons';
 
 	// Props
 	let { 
@@ -21,7 +21,7 @@
 	class="btn rounded-full bg-orange-500 px-6 text-white hover:bg-orange-600 {width} {height}"
 >
 	<div class="mr-2">
-		<HugeiconsIcon icon={FilterIcon} size={16} color="white" />
+		<HugeiconsIcon icon={SearchAreaIcon} size={16} color="white" />
 	</div>
 	{text}
 </button>

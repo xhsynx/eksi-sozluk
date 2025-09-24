@@ -44,20 +44,20 @@
 
 	<!-- Dropdown Menu -->
 	{#if isOpen}
-		<div
-			class="absolute top-full right-0 left-0 z-50 mt-1 rounded-lg border border-blue-200 bg-white shadow-lg"
-		>
-			{#each dateRanges as range}
-				<button
-					onclick={() => selectRange(range.label)}
-					class="w-full px-4 py-2 text-left text-blue-700 first:rounded-t-lg last:rounded-b-lg hover:bg-blue-50 {range.label ===
-					selectedRange
-						? 'bg-blue-100 font-semibold'
-						: ''}"
-				>
-					{range.label}
-				</button>
-			{/each}
+		<div class="absolute top-full left-0 right-0 z-50 mt-1 rounded-lg border border-gray-200 bg-white shadow-lg">
+			<div class="p-2">
+				{#each dateRanges as range}
+					<button
+						onclick={() => selectRange(range.label)}
+						class="w-full rounded-md px-2 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 {range.label ===
+						selectedRange
+							? 'bg-gray-100 font-medium'
+							: ''}"
+					>
+						{range.label}
+					</button>
+				{/each}
+			</div>
 		</div>
 	{/if}
 </div>
