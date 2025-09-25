@@ -269,9 +269,9 @@
 	});
 </script>
 
-<div class="container mx-auto p-6">
+<div class="container mx-auto p-1">
 	<!-- Search and Filter Bar -->
-	<div class="mb-8 flex items-center gap-4">
+	<div class="mb-8 flex items-center gap-2">
 		<!-- Search Bar -->
 		<SearchBar bind:value={searchValue} />
 
