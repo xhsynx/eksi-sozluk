@@ -116,7 +116,7 @@
 		<label for="my-drawer" class="drawer-overlay bg-base-300/50 backdrop-blur-sm"></label>
 		<aside class="flex min-h-full {isCollapsed ? 'w-16' : 'w-80'} transition-all duration-300 bg-base-300 fixed left-0 top-0 z-40">
 			<!-- Left Vertical Button Structure -->
-			<div class="flex w-16 flex-col items-center gap-4 bg-base-300 py-4 px-4">
+			<div class="flex w-16 flex-col items-center gap-4 bg-base-300 py-4">
 				<!-- Top 3 Buttons -->
 				{#each leftButtons.slice(0, 3) as button, index}
 					<div
@@ -163,7 +163,7 @@
 			</div>
 
 			<!-- Main Content Area -->
-			<div class="flex flex-1 flex-col bg-base-300">
+			<div class="flex flex-1 flex-col {isCollapsed ? 'hidden' : 'block'} bg-base-300">
 				<!-- User Profile Section -->
 				<div class="p-4 bg-base-300">
 					<div class="flex items-center gap-3">
@@ -172,11 +172,9 @@
 							<div class="avatar">
 								<HugeiconsIcon icon={UserCircleIcon} size={20} color="currentColor" />
 							</div>
-							{#if !isCollapsed}
 							<div class="flex-1">
 								<div class="text-sm font-medium">Mete Ülkü</div>
 							</div>
-							{/if}
 						</div>
 
 						<!-- Window Icon -->
@@ -188,17 +186,17 @@
 
 				<!-- Menu Items -->
 				<div class="flex-1 overflow-y-auto bg-base-300">
-					<ul class="menu w-full p-2 bg-base-300">
+					<ul class="menu w-full p-4 bg-base-300">
 						{#each menuItems as item}
 							<li>
 								<div
-									class="flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left {isActive(item.route)
+									class="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left {isActive(item.route)
 										? 'bg-base-300'
 										: 'hover:bg-base-300'}"
 								>
 									<ButtonIcon
 										icon={item.icon}
-										text={isCollapsed ? undefined : item.name}
+										text={item.name}
 										class="flex text-left justify-start w-full"
 										onClick={() => console.log(`${item.name} clicked`)}
 									/>
