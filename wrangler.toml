@@ -1,12 +1,11 @@
 name = "eksi-sozluk"
-type = "javascript"
+main = "index.js"
 
 [build]
 command = "bun run build"
 
 [site]
 bucket = "./dist"
-entry-point = "."
 
 [compatibility]
 compatibility_date = "2025-09-25"
