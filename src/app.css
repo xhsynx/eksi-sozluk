@@ -2,3 +2,12 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 @plugin "daisyui";
+
+/* Global Mulish Font */
+* {
+	font-family: 'Mulish', sans-serif;
+}
+
+body {
+	font-family: 'Mulish', sans-serif;
+}
