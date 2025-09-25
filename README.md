@@ -168,5 +168,5 @@ bun run build
 ```env
 # Production
 NODE_ENV=production
-VITE_API_URL=https://api.example.com
+CLOUD_FLARE_URL=https://b23e43cd.eksi-sozluk.pages.dev
 ```
