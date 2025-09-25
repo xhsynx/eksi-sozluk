@@ -94,7 +94,7 @@
 	<!-- Page content here -->
 	<div class="drawer-content flex flex-col">
 		<!-- Mobile header with hamburger menu -->
-		<div class="lg:hidden navbar bg-base-100 border-b border-base-300">
+		<div class="lg:hidden navbar border-b border-base-300 bg-base-300">
 			<div class="flex-none">
 				<label for="my-drawer" class="btn btn-square btn-ghost">
 					<HugeiconsIcon icon={SidebarLeftIcon} size={20} color="currentColor" />
