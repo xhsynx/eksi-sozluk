@@ -143,6 +143,19 @@
 					</div>
 				{/each}
 
+				<!-- Sidebar Toggle Button (Desktop only - when collapsed) -->
+				{#if isCollapsed}
+					<div
+						class="hidden lg:flex h-10 w-10 items-center justify-center rounded-full border-2 border-base-300 bg-base-100 hover:bg-base-200"
+					>
+						<ButtonIcon
+							icon={leftButtons[3].icon}
+							class={leftButtons[3].class}
+							onClick={leftButtons[3].onClick}
+						/>
+					</div>
+				{/if}
+
 				<!-- Spacer -->
 				<div class="flex-1"></div>
 
@@ -178,10 +191,12 @@
 							</div>
 						</div>
 
-						<!-- Window Icon -->
-						<button class="btn btn-ghost btn-sm" aria-label="Window options" onclick={toggleSidebar}>
-							<img src={SidebarLeftIcon} alt="Window" width="16" height="16" />
-						</button>
+						<!-- Window Icon (only when sidebar is open) -->
+						{#if !isCollapsed}
+							<button class="btn btn-ghost btn-sm" aria-label="Window options" onclick={toggleSidebar}>
+								<img src={SidebarLeftIcon} alt="Window" width="16" height="16" />
+							</button>
+						{/if}
 					</div>
 				</div>
 
