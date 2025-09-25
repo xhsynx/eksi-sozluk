@@ -2,7 +2,6 @@
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import {
 		RainDropIcon,
-		DownloadIcon,
 		UserEdit01Icon,
 		Chart01Icon,
 		UnavailableIcon,
@@ -33,6 +32,7 @@
 	import SearchIcon from '$lib/assets/search.svg';
 	import RefreshIcon from '$lib/assets/refresh.svg';
 	import StrokePartialIcon from '$lib/assets/stroke_partial.svg';
+	import DownloadIcon from '$lib/assets/download.svg';
 
 	// Get theme state from store
 	let isDarkTheme = $derived($isDark);
@@ -409,7 +409,7 @@
 
 				<!-- Download Button - Far Right -->
 				<button class="btn rounded-md btn-ghost btn-lg mt-2 sm:mt-0" aria-label="Download">
-					<HugeiconsIcon icon={DownloadIcon} size={20} color="gray" />
+					<img src={DownloadIcon} alt="Download" width="20" height="20" />
 				</button>
 			</div>
 
@@ -544,7 +544,7 @@
 
 										<!-- Download Button -->
 										<button class="btn rounded-md btn-ghost btn-sm" aria-label="Download">
-											<HugeiconsIcon icon={DownloadIcon} size={16} color="gray" />
+											<img src={DownloadIcon} alt="Download" width="16" height="16" />
 										</button>
 									</div>
 								</div>

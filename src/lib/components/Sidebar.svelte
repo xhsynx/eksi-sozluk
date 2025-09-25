@@ -3,29 +3,34 @@
 	import ButtonIcon from './ButtonIcon.svelte';
 	import { page } from '$app/stores';
 	import { isDark, toggleTheme } from '$lib/stores/theme';
-	import {
-		Analytics01Icon,
-		Notification01Icon,
-		UserCircleIcon,
-		FlowIcon,
-		Grid02Icon,
-		TwitterIcon,
-		YoutubeIcon,
-		TiktokIcon,
-		News01Icon,
-		LiveStreaming01Icon,
-		CheckmarkCircle01Icon,
-		InstagramIcon,
-		FacebookIcon,
-		Briefcase01Icon,
-		Store01Icon,
-		Location01Icon,
-		Radio01Icon,
-		Moon02Icon,
-		PuzzleIcon,
-		Attachment01Icon,
-		SidebarLeftIcon
-	} from '@hugeicons/core-free-icons';
+	import NotificationsIcon from '$lib/assets/notifications.svg';
+	import LeftPanelCloseIcon from '$lib/assets/left_panel_close.svg';
+	import ExtensionIcon from '$lib/assets/extension.svg';
+	import UnionIcon from '$lib/assets/Union.svg';
+	import AnalyticsIcon from '$lib/assets/analytics.svg';
+	import DarkModeIcon from '$lib/assets/dark_mode.svg';
+	import CalendarDayIcon from '$lib/assets/calendar_today.svg';
+	import DashboardIcon from '$lib/assets/dashboard.svg';
+	import XIcon from '$lib/assets/x.svg';
+	import YoutubeIcon from '$lib/assets/youtube.svg';
+	import ListsIcon from '$lib/assets/lists.svg';
+	import TiktokIcon from '$lib/assets/tiktok.svg';
+	import NewsPaperIcon from '$lib/assets/newspaper.svg';
+	import CellTowerIcon from '$lib/assets/cell_tower.svg';
+	import SikayetvarIcon from '$lib/assets/sikayetvar.svg';
+	import InstagramIcon from '$lib/assets/instagram.svg';
+	import FacebookIcon from '$lib/assets/facebook.svg';
+	import ShopIcon from '$lib/assets/shop.svg';
+	import StoreFrontIcon from '$lib/assets/storefront.svg';
+	import LocationIcon from '$lib/assets/location_on.svg';
+	import RadioIcon from '$lib/assets/radio.svg';
+	import CompareArrowsIcon from '$lib/assets/compare_arrows.svg';
+	import NoteStackIcon from '$lib/assets/note_stack.svg';
+	import TrendingUpIcon from '$lib/assets/trending_up.svg';
+	import AlarmIcon from '$lib/assets/alarm.svg';
+	import UserIcon from '$lib/assets/account_circle.svg';
+	import SidebarLeftIcon from '$lib/assets/left_panel_close.svg';
+
 
 	let { children } = $props();
 
@@ -39,25 +44,25 @@
 
 	// Menu items data
 	const menuItems = [
-		{ name: 'Akış', icon: FlowIcon, route: '/akış' },
-		{ name: 'Genel Bakış', icon: Grid02Icon, route: '/genel-bakış' },
-		{ name: 'Twitter', icon: TwitterIcon, route: '/twitter' },
+		{ name: 'Akış', icon: CalendarDayIcon, route: '/akış' },
+		{ name: 'Genel Bakış', icon: DashboardIcon, route: '/genel-bakış' },
+		{ name: 'X', icon: XIcon, route: '/x' },
 		{ name: 'YouTube', icon: YoutubeIcon, route: '/youtube' },
-		{ name: 'Ekşi Sözlük', icon: FlowIcon, route: '/eksisozluk' },
+		{ name: 'Ekşi Sözlük', icon: ListsIcon, route: '/eksisozluk' },
 		{ name: 'TikTok', icon: TiktokIcon, route: '/tiktok' },
-		{ name: 'Haberler', icon: News01Icon, route: '/haberler' },
-		{ name: 'Canlı Yayın', icon: LiveStreaming01Icon, route: '/canlı-yayın' },
-		{ name: 'Şikayetvar', icon: CheckmarkCircle01Icon, route: '/şikayetvar' },
+		{ name: 'Haberler', icon: NewsPaperIcon, route: '/haberler' },
+		{ name: 'Canlı Yayın', icon: CellTowerIcon, route: '/canlı-yayın' },
+		{ name: 'Şikayetvar', icon: SikayetvarIcon, route: '/şikayetvar' },
 		{ name: 'Instagram', icon: InstagramIcon, route: '/instagram' },
 		{ name: 'Facebook', icon: FacebookIcon, route: '/facebook' },
-		{ name: 'Uygulamalar', icon: Briefcase01Icon, route: '/uygulamalar' },
-		{ name: 'Pazaryeri', icon: Store01Icon, route: '/pazaryeri' },
-		{ name: 'Google Haritalar', icon: Location01Icon, route: '/google-haritalar' },
-		{ name: 'Radyo Yayını', icon: Radio01Icon, route: '/radyo-yayını' },
-		{ name: 'Rakip Analizi', icon: FlowIcon, route: '/rakip-analizi' },
-		{ name: 'Raporlar', icon: FlowIcon, route: '/raporlar' },
-		{ name: 'Trendler', icon: FlowIcon, route: '/trendler' },
-		{ name: 'Alarmlar', icon: FlowIcon, route: '/alarmlar' }
+		{ name: 'Uygulamalar', icon: ShopIcon, route: '/uygulamalar' },
+		{ name: 'Pazaryeri', icon: StoreFrontIcon, route: '/pazaryeri' },
+		{ name: 'Google Haritalar', icon: LocationIcon, route: '/google-haritalar' },
+		{ name: 'Radyo Yayını', icon: RadioIcon, route: '/radyo-yayını' },
+		{ name: 'Rakip Analizi', icon: CompareArrowsIcon, route: '/rakip-analizi' },
+		{ name: 'Raporlar', icon: NoteStackIcon, route: '/raporlar' },
+		{ name: 'Trendler', icon: TrendingUpIcon, route: '/trendler' },
+		{ name: 'Alarmlar', icon: AlarmIcon, route: '/alarmlar' }
 	];
 
 	// Function to check if a menu item is active
@@ -68,23 +73,23 @@
 	// Left vertical buttons data
 	const leftButtons = [
 		{
-			icon: Attachment01Icon,
+			icon: UnionIcon,
 			class: 'text-white centered',
 			onClick: () => console.log('Logo clicked')
 		},
 		{
-			icon: Analytics01Icon,
+			icon: AnalyticsIcon,
 			class: 'text-white centered',
 			onClick: () => console.log('Analytics clicked')
 		},
-		{ icon: PuzzleIcon, class: 'text-base-content centered', onClick: () => console.log('Cloud clicked') },
-		{ icon: SidebarLeftIcon, class: 'text-base-content centered', onClick: toggleSidebar },
+		{ icon: ExtensionIcon, class: 'text-base-content centered', onClick: () => console.log('Cloud clicked') },
+		{ icon: LeftPanelCloseIcon, class: 'text-base-content centered', onClick: toggleSidebar },
 		{
-			icon: Notification01Icon,
+			icon: NotificationsIcon,
 			class: 'text-base-content centered',
 			onClick: () => console.log('Notifications clicked')
 		},
-		{ icon: Moon02Icon, class: 'text-base-content centered', onClick: toggleTheme }
+		{ icon: DarkModeIcon, class: 'text-base-content centered', onClick: toggleTheme }
 	];
 </script>
 
@@ -97,7 +102,7 @@
 		<div class="lg:hidden navbar border-b border-base-300 bg-base-300">
 			<div class="flex-none">
 				<label for="my-drawer" class="btn btn-square btn-ghost">
-					<HugeiconsIcon icon={SidebarLeftIcon} size={20} color="currentColor" />
+				 <img src={LeftPanelCloseIcon} alt="Notifications" width="20" height="20" />
 				</label>
 			</div>
 		</div>
@@ -167,7 +172,7 @@
 						<!-- User Info -->
 						<div class="flex flex-1 items-center gap-2">
 							<div class="avatar">
-								<HugeiconsIcon icon={UserCircleIcon} size={20} color="currentColor" />
+								<img src={UserIcon} alt="User" width="20" height="20" />
 							</div>
 							<div class="flex-1">
 								<div class="text-sm font-medium">Mete Ülkü</div>
@@ -176,7 +181,7 @@
 
 						<!-- Window Icon -->
 						<button class="btn btn-ghost btn-sm" aria-label="Window options" onclick={toggleSidebar}>
-							<HugeiconsIcon icon={SidebarLeftIcon} size={16} color="currentColor" />
+							<img src={SidebarLeftIcon} alt="Window" width="16" height="16" />
 						</button>
 					</div>
 				</div>
