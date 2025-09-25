@@ -2,9 +2,7 @@
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import {
 		RainDropIcon,
-		Analytics01Icon,
 		DownloadIcon,
-		Menu09Icon,
 		UserEdit01Icon,
 		Chart01Icon,
 		UnavailableIcon,
@@ -26,6 +24,15 @@
 	import { topicService } from '$lib/services/topicService';
 	import type { Topic } from '$lib/types/topic';
 	import { isDark } from '$lib/stores/theme';
+	
+	// SVG Imports
+	import BarChartIcon from '$lib/assets/bar_chart.svg';
+	import ViewAgendaIcon from '$lib/assets/view_agenda.svg';
+	import SwapVertIcon from '$lib/assets/swap_vert.svg';
+	import CalendarTodayIcon from '$lib/assets/calendar_today.svg';
+	import SearchIcon from '$lib/assets/search.svg';
+	import RefreshIcon from '$lib/assets/refresh.svg';
+	import StrokePartialIcon from '$lib/assets/stroke_partial.svg';
 
 	// Get theme state from store
 	let isDarkTheme = $derived($isDark);
@@ -377,11 +384,7 @@
 								: ''}"
 							onclick={() => (activeTab = 'contents')}
 						>
-							<HugeiconsIcon
-								icon={Menu09Icon}
-								size={20}
-								color={activeTab === 'contents' ? 'blue' : 'gray'}
-							/>
+							<img src={ViewAgendaIcon} alt="Contents" width="20" height="20" />
 							<span class="font-medium truncate">İçerikler</span>
 						</button>
 					</div>
@@ -398,11 +401,7 @@
 								: ''}"
 							onclick={() => (activeTab = 'analytics')}
 						>
-							<HugeiconsIcon
-								icon={Analytics01Icon}
-								size={20}
-								color={activeTab === 'analytics' ? 'blue' : 'gray'}
-							/>
+							<img src={BarChartIcon} alt="Analytics" width="20" height="20" />
 							<span class="font-medium truncate">Analitik</span>
 						</button>
 					</div>

@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { HugeiconsIcon } from '@hugeicons/svelte';
-	import { Search01Icon, Clock01Icon } from '@hugeicons/core-free-icons';
-
+	import SearchIcon from '$lib/assets/search.svg';
+	
 	// Props
 	let { 
 		value = $bindable(''),
@@ -43,9 +42,9 @@
 
 <div class="{width}">
 	<div class="relative">
-		<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-			<HugeiconsIcon icon={Search01Icon} size={20} color="currentColor" />
-		</div>
+	<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+		<img src={SearchIcon} alt="Search" width="20" height="20" />
+	</div>
 		<input
 			type="text"
 			bind:value
@@ -66,7 +65,10 @@
 			<div class="absolute top-full left-0 right-0 z-50 mt-1 rounded-lg border border-base-300 bg-base-100 shadow-lg">
 				<div class="p-2">
 					<div class="mb-2 flex items-center gap-2 px-2 py-1 text-xs font-medium text-base-content/70">
-						<HugeiconsIcon icon={Clock01Icon} size={14} color="currentColor" />
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor"/>
+							<path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="currentColor"/>
+						</svg>
 						<span>Son Aramalar</span>
 					</div>
 					{#each recentSearches as search}

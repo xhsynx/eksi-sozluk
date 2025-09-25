@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { HugeiconsIcon } from '@hugeicons/svelte';
-	import { RefreshIcon } from '@hugeicons/core-free-icons';
-
+	import RefreshIcon from '$lib/assets/refresh.svg';
+	
 	// Props
 	let { 
 		onClick = () => {},
@@ -26,9 +25,9 @@
 		{#if loading}
 			<div class="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"></div>
 		{:else}
-			<div class="mr-2">
-				<HugeiconsIcon icon={RefreshIcon} size={20} color="currentColor" />
-			</div>
+		<div class="mr-2">
+			<img src={RefreshIcon} alt="Refresh" width="20" height="20" />
+		</div>
 		{/if}
 		{text}
 		<div class="ml-2 border-l border-base-content/20 pl-2">

@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { HugeiconsIcon } from '@hugeicons/svelte';
-	import { SearchAreaIcon } from '@hugeicons/core-free-icons';
-
+	import StrokePartialIcon from '$lib/assets/stroke_partial.svg';
+	
 	// Props
 	let { 
 		onClick = () => {},
@@ -21,7 +20,7 @@
 	class="btn rounded-full bg-orange-500 px-6 text-white hover:bg-orange-600 {width} {height} flex items-center justify-center"
 >
 	<div class="mr-2">
-		<HugeiconsIcon icon={SearchAreaIcon} size={16} color="white" />
+		<img src={StrokePartialIcon} alt="Filter" width="16" height="16" />
 	</div>
 	{text}
 </button>

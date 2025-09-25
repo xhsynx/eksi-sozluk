@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { HugeiconsIcon } from '@hugeicons/svelte';
-	import { Calendar01Icon } from '@hugeicons/core-free-icons';
-
+	import CalendarTodayIcon from '$lib/assets/calendar_today.svg';
+	
 	// Props
 	let { 
 		selectedRange = $bindable('Son 7 gün'),
@@ -32,9 +31,9 @@
 		onclick={() => (isOpen = !isOpen)}
 		class="btn w-full justify-start rounded-full border border-primary bg-primary/10 px-4 {height} text-primary shadow-sm hover:bg-primary/20 min-w-0"
 	>
-		<div class="mr-2 flex-shrink-0">
-			<HugeiconsIcon icon={Calendar01Icon} size={20} color="currentColor" />
-		</div>
+	<div class="mr-2 flex-shrink-0">
+		<img src={CalendarTodayIcon} alt="Calendar" width="20" height="20" />
+	</div>
 		<span class="truncate" title="{selectedRange}">{selectedRange}</span>
 		<svg class="ml-auto h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"

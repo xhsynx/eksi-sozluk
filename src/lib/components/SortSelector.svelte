@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { HugeiconsIcon } from '@hugeicons/svelte';
-	import { ArrowUpDownIcon, ArrowDown01Icon } from '@hugeicons/core-free-icons';
-
+	import SwapVertIcon from '$lib/assets/swap_vert.svg';
+	
 	// Props
 	let { 
 		selectedSort = $bindable('En yeniye göre sırala'),
@@ -33,9 +32,11 @@
 		onclick={() => (isOpen = !isOpen)}
 		class="flex items-center gap-2 rounded-full border border-primary bg-primary/10 px-4 text-primary hover:bg-primary/20 transition-colors {height} justify-center min-w-0"
 	>
-		<HugeiconsIcon icon={ArrowUpDownIcon} size={16} color="currentColor" />
+	<img src={SwapVertIcon} alt="Sort" width="16" height="16" />
 		<span class="text-sm font-medium truncate max-w-32 sm:max-w-none" title="{selectedSort}">{selectedSort}</span>
-		<HugeiconsIcon icon={ArrowDown01Icon} size={16} color="currentColor" />
+		<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+		</svg>
 	</button>
 
 	<!-- Dropdown Menu -->
