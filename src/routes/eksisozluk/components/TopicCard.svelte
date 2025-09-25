@@ -7,6 +7,8 @@
 		title = 'Başlıklar',
 		currentPage = 1,
 		totalPages = 47,
+		totalEntries = 194,
+		showEntryFormat = false,
 		onPrevious = () => {},
 		onNext = () => {},
 		class: className = '',
@@ -29,8 +31,12 @@
 		<div class="mb-3 flex items-center justify-between border-b border-base-300 pb-3">
 			<!-- Left: Title and Pagination -->
 			<div class="flex items-center space-x-4">
-				<h3 class="text-sm font-normal  ">{title}</h3>
-				<span class="text-sm font-normal  ">{currentPage} / {totalPages}</span>
+				{#if showEntryFormat}
+					<h3 class="text-sm font-normal  ">Toplam {totalEntries} entry içerisinde {currentPage} ile {Math.min(currentPage + 9, totalPages * 10)} arası</h3>
+				{:else}
+					<h3 class="text-sm font-normal  ">{title}</h3>
+					<span class="text-sm font-normal  ">{currentPage} / {totalPages}</span>
+				{/if}
 			</div>
 
 			<!-- Right: Navigation -->

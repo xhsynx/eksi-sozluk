@@ -424,6 +424,7 @@
 						title="Başlıklar"
 						{currentPage}
 						{totalPages}
+						totalEntries={topics.length}
 						onPrevious={handleTopicPrevious}
 						onNext={handleTopicNext}
 						class="w-full rounded-2xl"
@@ -451,6 +452,8 @@
 						title={selectedTopic?.title || 'Başlık seçin'}
 						currentPage={currentEntryPage}
 						totalPages={totalEntryPages}
+						totalEntries={selectedTopic?.likes || 0}
+						showEntryFormat={true}
 						onPrevious={handleEntryPrevious}
 						onNext={handleEntryNext}
 						class="w-full rounded-2xl"
