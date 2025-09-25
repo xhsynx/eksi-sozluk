@@ -86,7 +86,7 @@
 					<div class="flex items-center justify-between sm:justify-end space-x-2 sm:space-x-3 min-w-0">
 						<!-- Author and Timestamp -->
 						<div class="flex flex-col items-start sm:items-center space-x-2 min-w-0">
-							<span class="text-xs sm:text-sm font-normal truncate max-w-20 sm:max-w-16" title="{author}">{author}</span>
+							<span class="text-xs sm:text-sm font-normal truncate max-w-40 sm:max-w-40" title="{author}">{author}</span>
 							<span class="text-xs font-normal truncate">{lastUpdate}</span>
 						</div>
 

@@ -452,7 +452,7 @@
 						title={selectedTopic?.title || 'Başlık seçin'}
 						currentPage={currentEntryPage}
 						totalPages={totalEntryPages}
-						totalEntries={selectedTopic?.likes || 0}
+						totalEntries={selectedTopic?.entries.length || 0}
 						showEntryFormat={true}
 						onPrevious={handleEntryPrevious}
 						onNext={handleEntryNext}
