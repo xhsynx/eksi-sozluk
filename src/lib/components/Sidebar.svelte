@@ -112,9 +112,9 @@
 	</div>
 
 	<!-- Sidebar -->
-	<div class="drawer-side">
-		<label for="my-drawer" class="drawer-overlay"></label>
-		<aside class="flex min-h-full w-80 lg:{isCollapsed ? 'w-16' : 'w-80'} transition-all duration-300">
+	<div class="drawer-side bg-base-300">
+		<label for="my-drawer" class="drawer-overlay bg-base-300/50 backdrop-blur-sm"></label>
+		<aside class="flex min-h-full w-80 lg:{isCollapsed ? 'w-16' : 'w-80'} transition-all duration-300 bg-base-300">
 			<!-- Left Vertical Button Structure -->
 			<div class="flex w-16 flex-col items-center gap-4 bg-base-300 py-4">
 				<!-- Top 3 Buttons -->
@@ -163,9 +163,9 @@
 			</div>
 
 			<!-- Main Content Area -->
-			<div class="flex flex-1 flex-col lg:{isCollapsed ? 'hidden' : 'block'}">
+			<div class="flex flex-1 flex-col lg:{isCollapsed ? 'hidden' : 'block'} bg-base-300">
 				<!-- User Profile Section -->
-				<div class="p-4">
+				<div class="p-4 bg-base-300">
 					<div class="flex items-center gap-3">
 						<!-- User Info -->
 						<div class="flex flex-1 items-center gap-2">
@@ -185,8 +185,8 @@
 				</div>
 
 				<!-- Menu Items -->
-				<div class="flex-1 overflow-y-auto">
-					<ul class="menu w-full p-4">
+				<div class="flex-1 overflow-y-auto bg-base-300">
+					<ul class="menu w-full p-4 bg-base-300">
 						{#each menuItems as item}
 							<li>
 								<div
