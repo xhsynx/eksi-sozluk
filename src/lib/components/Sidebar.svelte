@@ -92,7 +92,7 @@
 	<input type="checkbox" id="my-drawer" class="drawer-toggle" />
 
 	<!-- Page content here -->
-	<div class="drawer-content flex flex-col">
+	<div class="drawer-content flex flex-col {isCollapsed ? 'ml-16' : 'ml-80'} transition-all duration-300">
 		<!-- Mobile header with hamburger menu -->
 		<div class="lg:hidden navbar bg-base-100 border-b border-base-300">
 			<div class="flex-none">
@@ -114,7 +114,7 @@
 	<!-- Sidebar -->
 	<div class="drawer-side bg-base-300">
 		<label for="my-drawer" class="drawer-overlay bg-base-300/50 backdrop-blur-sm"></label>
-		<aside class="flex min-h-full w-80 lg:{isCollapsed ? 'w-16' : 'w-80'} transition-all duration-300 bg-base-300">
+		<aside class="flex min-h-full {isCollapsed ? 'w-16' : 'w-80'} transition-all duration-300 bg-base-300 fixed left-0 top-0 z-40">
 			<!-- Left Vertical Button Structure -->
 			<div class="flex w-16 flex-col items-center gap-4 bg-base-300 py-4">
 				<!-- Top 3 Buttons -->
@@ -134,9 +134,9 @@
 					</div>
 				{/each}
 
-				<!-- Sidebar Toggle Button (Desktop only) -->
+				<!-- Sidebar Toggle Button -->
 				<div
-					class="hidden lg:flex h-10 w-10 items-center justify-center rounded-full border-2 border-base-300 bg-base-100 hover:bg-base-200"
+					class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-base-300 bg-base-100 hover:bg-base-200"
 				>
 					<ButtonIcon
 						icon={leftButtons[3].icon}
@@ -163,7 +163,7 @@
 			</div>
 
 			<!-- Main Content Area -->
-			<div class="flex flex-1 flex-col lg:{isCollapsed ? 'hidden' : 'block'} bg-base-300">
+			<div class="flex flex-1 flex-col {isCollapsed ? 'hidden' : 'block'} bg-base-300">
 				<!-- User Profile Section -->
 				<div class="p-4 bg-base-300">
 					<div class="flex items-center gap-3">
