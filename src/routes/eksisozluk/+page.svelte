@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import { Delete02Icon, UnavailableIcon } from '@hugeicons/core-free-icons';
 	import ThumbsUpIcon from '$lib/assets/thumb_up.svg';
 	import PaperIcon from '$lib/assets/newspaper.svg';
@@ -26,7 +25,6 @@
 	import ListsIcon from '$lib/assets/lists.svg';
 	import StackedBarIcon from '$lib/assets/stacked_bar_chart.svg';
 	// Get theme state from store
-	let isDarkTheme = $derived($isDark);
 
 	// Search state
 	let searchValue = $state('Kemal Kılıçdaroğlu');
@@ -400,7 +398,7 @@
 			</div>
 
 			<!-- Download Button - Far Right -->
-			<button class="btn rounded-md bg-zinc-100 btn-ghost" aria-label="Download">
+			<button class="btn rounded-md btn-ghost { $isDark ? 'bg-zinc-800' : 'bg-zinc-200'}" aria-label="Download">
 				<img src={DownloadIcon} alt="Download" width="20" height="20" />
 			</button>
 		</div>
@@ -487,10 +485,10 @@
 					class="grid grid-cols-1 gap-4 rounded-2xl border border-base-300 bg-base-100 p-2 md:grid-cols-2 lg:grid-cols-4"
 				>
 					{#each kpiData as kpi}
-						<div class="card {isDarkTheme ? 'bg-base-100' : kpi.color}">
+						<div class="card {$isDark ? 'bg-zinc-900' : kpi.color}">
 							<div class="card-body p-4">
 								<div class="flex items-center">
-									<div class="p-3">
+									<div class="p-3 {$isDark ? 'bg-zinc-400' : ''}">
 										<img src={kpi.icon} alt="KPI" width="24" height="24" />
 									</div>
 									<div class="px-4">
@@ -515,7 +513,9 @@
 						<!-- Statistics Chart Card -->
 						<div class="card border border-base-300 bg-base-100 shadow-sm">
 							<div class="card-body p-6">
-								<div class="mb-4 flex items-center justify-between">
+								<div
+									class="mb-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+								>
 									<div>
 										<h4 class="text-base font-medium text-base-content/70">
 											Ekşi Sözlük İstatistikleri
@@ -526,22 +526,22 @@
 									</div>
 
 									<!-- Button Groups -->
-									<div class="flex items-center gap-2">
+									<div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-2">
 										<!-- Chart Type Buttons -->
 										<div
-											class="flex items-center rounded-lg border border-base-300 bg-base-100 p-1"
+											class="flex w-full items-center rounded-lg border border-base-300 bg-base-100 p-1 sm:w-auto"
 										>
-											<button class="btn rounded-md btn-ghost btn-sm">
+											<button class="btn flex-1 rounded-md btn-ghost btn-sm sm:flex-none">
 												<img src={BarChartIcon} alt="Chart" width="16" height="16" />
 											</button>
-											<button class="btn rounded-md btn-sm btn-primary">
+											<button class="btn flex-1 rounded-md btn-sm sm:flex-none">
 												<img src={StackedBarIcon} alt="Chart" width="16" height="16" />
 											</button>
 										</div>
 
 										<!-- Download Button -->
-										<button class="btn rounded-md btn-ghost btn-sm" aria-label="Download">
-											<img src={DownloadIcon} alt="Download" width="16" height="16" />
+										<button class="btn rounded-md btn-ghost { $isDark ? 'bg-zinc-800' : 'bg-zinc-200'}" aria-label="Download">
+											<img src={DownloadIcon} alt="Download" width="20" height="20" />
 										</button>
 									</div>
 								</div>
