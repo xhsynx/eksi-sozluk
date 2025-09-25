@@ -269,7 +269,7 @@
 	});
 </script>
 
-<div class="container mx-auto p-1">
+<div class="p-2">
 	<!-- Search and Filter Bar -->
 	<div class="mb-8 flex flex-col gap-2 sm:flex-row sm:items-center">
 		<!-- Search Bar -->

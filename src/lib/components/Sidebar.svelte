@@ -100,9 +100,6 @@
 					<HugeiconsIcon icon={SidebarLeftIcon} size={20} color="currentColor" />
 				</label>
 			</div>
-			<div class="flex-1">
-				<h1 class="text-lg font-semibold">Ekşi Sözlük</h1>
-			</div>
 		</div>
 		
 		<!-- Page content -->
@@ -114,7 +111,7 @@
 	<!-- Sidebar -->
 	<div class="drawer-side bg-base-300">
 		<label for="my-drawer" class="drawer-overlay bg-base-300/50 backdrop-blur-sm"></label>
-		<aside class="flex min-h-full w-80 lg:{isCollapsed ? 'w-16' : 'w-80'} transition-all duration-300 bg-base-300">
+		<aside class="flex min-h-full lg:{isCollapsed ? 'w-16' : 'w-80'} transition-all duration-300 bg-base-300">
 			<!-- Left Vertical Button Structure -->
 			<div class="flex w-16 flex-col items-center gap-4 bg-base-300 py-4">
 				<!-- Top 3 Buttons -->
