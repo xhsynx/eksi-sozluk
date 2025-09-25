@@ -2,34 +2,54 @@ import type { Topic, TopicListResponse } from '$lib/types/topic';
 import type { Entry } from '$lib/types/entry';
 import type { User } from '$lib/types/user';
 
-// Mock users
+// Function to generate random avatar URLs
+function getRandomAvatarUrl(): string {
+	const avatarServices = [
+		'https://api.dicebear.com/7.x/avataaars/svg?seed=',
+		'https://api.dicebear.com/7.x/personas/svg?seed=',
+		'https://api.dicebear.com/7.x/initials/svg?seed=',
+		'https://api.dicebear.com/7.x/micah/svg?seed=',
+		'https://api.dicebear.com/7.x/miniavs/svg?seed=',
+		'https://api.dicebear.com/7.x/notionists/svg?seed=',
+		'https://api.dicebear.com/7.x/pixel-art/svg?seed=',
+		'https://api.dicebear.com/7.x/bottts/svg?seed=',
+		'https://api.dicebear.com/7.x/croodles/svg?seed=',
+		'https://api.dicebear.com/7.x/fun-emoji/svg?seed='
+	];
+	
+	const randomService = avatarServices[Math.floor(Math.random() * avatarServices.length)];
+	const randomSeed = Math.random().toString(36).substring(7);
+	return randomService + randomSeed;
+}
+
+// Mock users with random avatar URLs
 const mockUsers: User[] = [
-	{ id: 1, name: 'scandsucker', avatar: '🌙', email: 'scand@example.com', joinDate: '2020-01-15' },
-	{ id: 2, name: 'Paula Mora', avatar: '👩', email: 'paula@example.com', joinDate: '2019-03-22' },
-	{ id: 3, name: 'Eddie Lake', avatar: '👨', email: 'eddie@example.com', joinDate: '2021-07-10' },
+	{ id: 1, name: 'scandsucker', avatar: getRandomAvatarUrl(), email: 'scand@example.com', joinDate: '2020-01-15' },
+	{ id: 2, name: 'Paula Mora', avatar: getRandomAvatarUrl(), email: 'paula@example.com', joinDate: '2019-03-22' },
+	{ id: 3, name: 'Eddie Lake', avatar: getRandomAvatarUrl(), email: 'eddie@example.com', joinDate: '2021-07-10' },
 	{
 		id: 4,
 		name: 'Chris Glasser',
-		avatar: '🧑',
+		avatar: getRandomAvatarUrl(),
 		email: 'chris@example.com',
 		joinDate: '2020-11-05'
 	},
 	{
 		id: 5,
 		name: 'Autumn Phillips',
-		avatar: '👩‍🦰',
+		avatar: getRandomAvatarUrl(),
 		email: 'autumn@example.com',
 		joinDate: '2022-02-18'
 	},
-	{ id: 6, name: 'John Dukes', avatar: '👨‍💼', email: 'john@example.com', joinDate: '2018-09-12' },
+	{ id: 6, name: 'John Dukes', avatar: getRandomAvatarUrl(), email: 'john@example.com', joinDate: '2018-09-12' },
 	{
 		id: 7,
 		name: 'Frances Swann',
-		avatar: '👩‍🎨',
+		avatar: getRandomAvatarUrl(),
 		email: 'frances@example.com',
 		joinDate: '2021-04-30'
 	},
-	{ id: 8, name: 'Lorri Warf', avatar: '👩‍💻', email: 'lorri@example.com', joinDate: '2020-06-08' }
+	{ id: 8, name: 'Lorri Warf', avatar: getRandomAvatarUrl(), email: 'lorri@example.com', joinDate: '2020-06-08' }
 ];
 
 // Mock data

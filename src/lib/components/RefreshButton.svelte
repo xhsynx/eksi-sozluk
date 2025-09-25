@@ -1,5 +1,6 @@
 <script lang="ts">
 	import RefreshIcon from '$lib/assets/refresh.svg';
+	import { isDark } from '$lib/stores/theme';
 	
 	// Props
 	let { 
@@ -20,7 +21,7 @@
 	<button
 		onclick={handleClick}
 		disabled={loading}
-		class="btn rounded-full border-base-300 bg-base-200 px-6 text-base-content hover:border-base-300 hover:bg-base-300 {height} {loading ? 'opacity-50 cursor-not-allowed' : ''}"
+		class="btn rounded-full { $isDark ? 'bg-zinc-800' : 'bg-zinc-200'} px-6 text-base-content hover:border-base-300 hover:bg-base-300 {height} {loading ? 'opacity-50 cursor-not-allowed' : ''}"
 	>
 		{#if loading}
 			<div class="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"></div>
