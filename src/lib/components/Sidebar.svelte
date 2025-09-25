@@ -93,6 +93,18 @@
 
 	<!-- Page content here -->
 	<div class="drawer-content flex flex-col">
+		<!-- Mobile header with hamburger menu -->
+		<div class="lg:hidden navbar bg-base-100 border-b border-base-300">
+			<div class="flex-none">
+				<label for="my-drawer" class="btn btn-square btn-ghost">
+					<HugeiconsIcon icon={SidebarLeftIcon} size={20} color="currentColor" />
+				</label>
+			</div>
+			<div class="flex-1">
+				<h1 class="text-lg font-semibold">Ekşi Sözlük</h1>
+			</div>
+		</div>
+		
 		<!-- Page content -->
 		<div class="flex-1 p-2">
 			{@render children?.()}
@@ -102,7 +114,7 @@
 	<!-- Sidebar -->
 	<div class="drawer-side">
 		<label for="my-drawer" class="drawer-overlay"></label>
-		<aside class="flex min-h-full {isCollapsed ? 'w-16' : 'w-80'} transition-all duration-300">
+		<aside class="flex min-h-full w-80 lg:{isCollapsed ? 'w-16' : 'w-80'} transition-all duration-300">
 			<!-- Left Vertical Button Structure -->
 			<div class="flex w-16 flex-col items-center gap-4 bg-base-300 py-4">
 				<!-- Top 3 Buttons -->
@@ -122,9 +134,9 @@
 					</div>
 				{/each}
 
-				<!-- Sidebar Toggle Button -->
+				<!-- Sidebar Toggle Button (Desktop only) -->
 				<div
-					class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-base-300 bg-base-100 hover:bg-base-200"
+					class="hidden lg:flex h-10 w-10 items-center justify-center rounded-full border-2 border-base-300 bg-base-100 hover:bg-base-200"
 				>
 					<ButtonIcon
 						icon={leftButtons[3].icon}
@@ -151,7 +163,7 @@
 			</div>
 
 			<!-- Main Content Area -->
-			<div class="flex flex-1 flex-col {isCollapsed ? 'hidden' : 'block'}">
+			<div class="flex flex-1 flex-col lg:{isCollapsed ? 'hidden' : 'block'}">
 				<!-- User Profile Section -->
 				<div class="p-4">
 					<div class="flex items-center gap-3">
