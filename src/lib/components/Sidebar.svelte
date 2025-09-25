@@ -25,6 +25,7 @@
 	import LocationIcon from '$lib/assets/location_on.svg';
 	import RadioIcon from '$lib/assets/radio.svg';
 	import CompareArrowsIcon from '$lib/assets/compare_arrows.svg';
+	import KeyboardArrowDownIcon from '$lib/assets/keyboard_arrow_down.svg';
 	import NoteStackIcon from '$lib/assets/note_stack.svg';
 	import TrendingUpIcon from '$lib/assets/trending_up.svg';
 	import AlarmIcon from '$lib/assets/alarm.svg';
@@ -136,17 +137,6 @@
 					</div>
 				{/each}
 
-				<!-- Sidebar Toggle Button (Desktop only) -->
-				<div
-					class="hidden lg:flex h-10 w-10 items-center justify-center rounded-full border-2 border-base-300 bg-base-100 hover:bg-base-200"
-				>
-					<ButtonIcon
-						icon={leftButtons[3].icon}
-						class={leftButtons[3].class}
-						onClick={leftButtons[3].onClick}
-					/>
-				</div>
-
 				<!-- Spacer -->
 				<div class="flex-1"></div>
 
@@ -176,6 +166,9 @@
 							</div>
 							<div class="flex-1">
 								<div class="text-sm font-medium">Mete Ülkü</div>
+							</div>
+							<div class="flex items-center">
+								<img src={KeyboardArrowDownIcon} alt="Compare" width="16" height="16" />
 							</div>
 						</div>
 
