@@ -436,7 +436,7 @@
 							{#each topics as topic}
 								<TopicItem
 									title={topic.title}
-									entryCount={topic.likes}
+									entryCount={topic.entries.length}
 									isActive={selectedTopic?.id === topic.id}
 									onClick={() => handleTopicClick(topic.id)}
 								/>

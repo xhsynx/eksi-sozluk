@@ -2,6 +2,7 @@
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import ButtonIcon from './ButtonIcon.svelte';
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import { isDark, toggleTheme } from '$lib/stores/theme';
 	import NotificationsIcon from '$lib/assets/notifications.svg';
 	import LeftPanelCloseIcon from '$lib/assets/left_panel_close.svg';
@@ -69,6 +70,11 @@
 	// Function to check if a menu item is active
 	function isActive(route: string): boolean {
 		return $page.url.pathname === route;
+	}
+
+	// Function to handle menu item navigation
+	function navigateToRoute(route: string) {
+		goto(route);
 	}
 
 	// Left vertical buttons data
@@ -186,14 +192,14 @@
 							<li>
 								<div
 									class="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left {isActive(item.route)
-										? 'bg-base-300'
-										: 'hover:bg-base-300'}"
+										? $isDark ? 'bg-zinc-800' : 'bg-zinc-200'
+										: 'hover:bg-base-200'}"
 								>
 									<ButtonIcon
 										icon={item.icon}
 										text={item.name}
 										class="flex text-left justify-start w-full"
-										onClick={() => console.log(`${item.name} clicked`)}
+										onClick={() => navigateToRoute(item.route)}
 									/>
 								</div>
 							</li>
