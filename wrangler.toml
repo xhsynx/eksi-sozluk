@@ -4,9 +4,7 @@ main = "index.js"
 [build]
 command = "bun run build"
 
-[site]
-bucket = "./dist"
-
-[compatibility]
-compatibility_date = "2025-09-25"
+[assets]
+directory = "./dist"
+binding = "ASSETS"
 
