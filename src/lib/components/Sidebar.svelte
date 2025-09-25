@@ -94,7 +94,7 @@
 	<!-- Page content here -->
 	<div class="drawer-content flex flex-col">
 		<!-- Page content -->
-		<div class="flex-1 p-4">
+		<div class="flex-1 p-2">
 			{@render children?.()}
 		</div>
 	</div>

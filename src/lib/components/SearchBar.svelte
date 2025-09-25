@@ -52,7 +52,7 @@
 			{placeholder}
 			onclick={handleInputClick}
 			onblur={handleInputBlur}
-			class="w-full rounded-full border border-base-300 bg-base-100 px-10 {height} text-base-content placeholder-base-content/50 shadow-sm focus:border-base-300 focus:outline-none"
+			class="w-full rounded-full border border-base-300 bg-base-100 px-10 {height} text-base-content placeholder-base-content/50 shadow-sm focus:border-base-300 focus:outline-none truncate"
 		/>
 		<div class="absolute inset-y-0 right-0 flex items-center pr-3">
 			<svg class="h-4 w-4 text-base-content/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,7 +72,8 @@
 					{#each recentSearches as search}
 						<button
 							onclick={() => selectSearch(search)}
-							class="w-full rounded-md px-2 py-2 text-left text-sm text-base-content hover:bg-base-200"
+							class="w-full rounded-md px-2 py-2 text-left text-sm text-base-content hover:bg-base-200 truncate"
+							title="{search}"
 						>
 							{search}
 						</button>

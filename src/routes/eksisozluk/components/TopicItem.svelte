@@ -42,12 +42,12 @@
 			? 'bg-green-100' 
 			: 'hover:bg-base-200'}"
 	>
-		<div class="flex-1">
-			<h4 class="text-sm font-normal {isActive ? 'text-green-800' : ' '}">{title}</h4>
+		<div class="flex-1 min-w-0">
+			<h4 class="text-sm font-normal truncate {isActive ? 'text-green-800' : ' '}" title="{title}">{title}</h4>
 			{#if lastUpdate}
 				<div class="mt-1 flex items-center space-x-1">
 					<HugeiconsIcon icon={Calendar01Icon} size={12} color="currentColor" />
-					<p class="text-xs font-normal {isActive ? 'text-green-600' : ' '}">Son güncelleme: {lastUpdate}</p>
+					<p class="text-xs font-normal truncate {isActive ? 'text-green-600' : ' '}">Son güncelleme: {lastUpdate}</p>
 				</div>
 			{/if}
 		</div>
@@ -62,39 +62,39 @@
 {:else if type === 'detail'}
 	<!-- Detail Type - Content Details View -->
 	<div
-		class="rounded-lg border border-base-300 bg-base-100 p-4 {isSelected
+		class="rounded-lg border border-base-300 bg-base-100 p-3 sm:p-4 {isSelected
 			? 'rounded-xl ring-1 ring-blue-500 ring-offset-3 ring-inset'
 			: ''}"
 	>
-		<div class="flex items-start justify-between">
+		<div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
 			<!-- Left: Content -->
-			<div class="flex-1 pr-4">
+			<div class="flex-1 min-w-0">
 				<!-- Content Text -->
-				<p class="mb-3 text-sm font-normal leading-relaxed  ">
+				<p class="mb-2 sm:mb-3 text-sm font-normal leading-relaxed break-words overflow-hidden">
 					{content}
 				</p>
 
 				<!-- Bottom Row: Like (left) + Author/Time/Avatar/Actions (right) -->
-				<div class="flex items-center justify-between">
+				<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
 					<!-- Left: Like Count -->
 					<div class="flex items-center space-x-1">
-						<HugeiconsIcon icon={ThumbsUpIcon} size={16} color="currentColor" />
-						<span class="text-sm font-normal  ">{likes}</span>
+						<HugeiconsIcon icon={ThumbsUpIcon} size={14} color="currentColor" class="sm:w-4 sm:h-4" />
+						<span class="text-xs sm:text-sm font-normal">{likes}</span>
 					</div>
 
 					<!-- Right: Author, Time, Avatar, Actions -->
-					<div class="flex items-center space-x-3">
+					<div class="flex items-center justify-between sm:justify-end space-x-2 sm:space-x-3 min-w-0">
 						<!-- Author and Timestamp -->
-						<div class="flex flex-col items-center space-x-2">
-							<span class="text-sm font-normal  ">{author}</span>
-							<span class="text-xs font-normal  ">{lastUpdate}</span>
+						<div class="flex flex-col items-start sm:items-center space-x-2 min-w-0">
+							<span class="text-xs sm:text-sm font-normal truncate max-w-20 sm:max-w-16" title="{author}">{author}</span>
+							<span class="text-xs font-normal truncate">{lastUpdate}</span>
 						</div>
 
 						<!-- Avatar -->
 						<div
-							class="flex h-12 w-12 items-center justify-center rounded-full bg-primary"
+							class="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-primary flex-shrink-0"
 						>
-							<span class="text-sm font-normal text-primary-content">{avatar}</span>
+							<span class="text-xs sm:text-sm font-normal text-primary-content">{avatar}</span>
 						</div>
 
 						<!-- Checkbox -->
@@ -102,12 +102,12 @@
 							type="checkbox"
 							checked={isSelected}
 							onclick={handleToggleSelection}
-							class="checkbox checkbox-primary"
+							class="checkbox checkbox-primary checkbox-sm sm:checkbox-md flex-shrink-0"
 						/>
 
 						<!-- Actions -->
-						<button class="btn btn-ghost btn-sm" aria-label="More actions">
-							<HugeiconsIcon icon={MoreVerticalIcon} size={16} color="currentColor" />
+						<button class="btn btn-ghost btn-xs sm:btn-sm flex-shrink-0" aria-label="More actions">
+							<HugeiconsIcon icon={MoreVerticalIcon} size={14} color="currentColor" class="sm:w-4 sm:h-4" />
 						</button>
 					</div>
 				</div>

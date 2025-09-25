@@ -271,18 +271,24 @@
 
 <div class="container mx-auto p-1">
 	<!-- Search and Filter Bar -->
-	<div class="mb-8 flex items-center gap-2">
+	<div class="mb-8 flex flex-col gap-2 sm:flex-row sm:items-center">
 		<!-- Search Bar -->
-		<SearchBar bind:value={searchValue} />
+		<div class="w-full sm:w-auto">
+			<SearchBar bind:value={searchValue} width="w-full sm:w-80" />
+		</div>
 
 		<!-- Date Range Selector -->
-		<DateRangeSelector bind:selectedRange={selectedDateRange} />
+		<div class="w-full sm:w-auto">
+			<DateRangeSelector bind:selectedRange={selectedDateRange} width="w-full sm:w-48" />
+		</div>
 
 		<!-- Spacer -->
-		<div class="flex-1"></div>
+		<div class="flex-1 hidden sm:block"></div>
 
 		<!-- Refresh Button -->
-		<RefreshButton onClick={handleRefresh} loading={isRefreshing} />
+		<div class="w-full sm:w-auto">
+			<RefreshButton onClick={handleRefresh} loading={isRefreshing} />
+		</div>
 	</div>
 
 	<!-- Ekşi Sözlük Header Card -->
@@ -312,12 +318,12 @@
 				</div>
 
 				<!-- Action Buttons for Selected Items - All aligned to left -->
-				<div class="flex items-center gap-3">
+				<div class="flex flex-col gap-2 sm:flex-row sm:items-center">
 					<!-- Block Button -->
 					<ButtonIcon
 						icon={UnavailableIcon}
 						text="Engelle"
-						class="flex items-center justify-center rounded-lg bg-gray-200 px-4 py-2 text-red-600 hover:bg-gray-300"
+						class="flex items-center justify-center rounded-lg bg-gray-200 px-4 py-2 text-red-600 hover:bg-gray-300 w-full sm:w-auto"
 						type="button"
 						onClick={() => console.log('Engelle clicked')}
 					/>
@@ -326,7 +332,7 @@
 					<ButtonIcon
 						icon={Delete02Icon}
 						text="Sil"
-						class="flex items-center justify-center rounded-lg bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+						class="flex items-center justify-center rounded-lg bg-red-500 px-4 py-2 text-white hover:bg-red-600 w-full sm:w-auto"
 						type="button"
 						onClick={() => console.log('Sil clicked')}
 					/>
@@ -334,18 +340,22 @@
 			</div>
 		{:else}
 			<!-- Action Buttons Section (only show when no items selected) -->
-			<div class="flex items-center justify-between">
+			<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 				<!-- Left side: Action buttons -->
-				<div class="flex items-center gap-4">
+				<div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
 					<!-- Detaylı Ara Button -->
-					<DetailFilter onClick={handleDetailFilter} />
+					<div class="w-full sm:w-auto">
+						<DetailFilter onClick={handleDetailFilter} />
+					</div>
 
 					<!-- Sort Dropdown -->
-					<SortSelector bind:selectedSort />
+					<div class="w-full sm:w-auto">
+						<SortSelector bind:selectedSort width="w-full sm:w-auto" />
+					</div>
 				</div>
 
 				<!-- Right side: Temizle button -->
-				<button class="font-medium text-base-content/70 hover:text-base-content"> Temizle </button>
+				<button class="font-medium text-base-content/70 hover:text-base-content w-full sm:w-auto text-left sm:text-right"> Temizle </button>
 			</div>
 		{/if}
 	</div>
@@ -354,14 +364,14 @@
 	<div class="rounded-3xl bg-base-100 p-2 border border-base-300 ">
 		<!-- Tab Navigation -->
 			<div
-				class="flex items-center justify-between rounded-full bg-base-100"
+				class="flex flex-col sm:flex-row items-center justify-between rounded-full bg-base-100"
 			>
 				<!-- Left Half: İçerikler Tab -->
-				<div class="flex flex-1 justify-center p-4">
+				<div class="flex flex-1 justify-center p-2 sm:p-4 w-full sm:w-auto">
 					<div role="tablist" class="tabs-lift tabs w-full">
 						<button
 							role="tab"
-							class="tab flex w-full items-center justify-center space-x-3 px-8 py-4 text-lg {activeTab ===
+							class="tab flex w-full items-center justify-center space-x-2 sm:space-x-3 px-4 sm:px-8 py-3 sm:py-4 text-base sm:text-lg {activeTab ===
 							'contents'
 								? 'tab-active'
 								: ''}"
@@ -369,20 +379,20 @@
 						>
 							<HugeiconsIcon
 								icon={Menu09Icon}
-								size={24}
+								size={20}
 								color={activeTab === 'contents' ? 'blue' : 'gray'}
 							/>
-							<span class="font-medium">İçerikler</span>
+							<span class="font-medium truncate">İçerikler</span>
 						</button>
 					</div>
 				</div>
 
 				<!-- Right Half: Analitik Tab -->
-				<div class="flex flex-1 justify-center">
+				<div class="flex flex-1 justify-center w-full sm:w-auto">
 					<div role="tablist" class="tabs-lift tabs w-full">
 						<button
 							role="tab"
-							class="tab flex w-full items-center justify-center space-x-3 px-8 py-4 text-lg {activeTab ===
+							class="tab flex w-full items-center justify-center space-x-2 sm:space-x-3 px-4 sm:px-8 py-3 sm:py-4 text-base sm:text-lg {activeTab ===
 							'analytics'
 								? 'tab-active'
 								: ''}"
@@ -390,16 +400,16 @@
 						>
 							<HugeiconsIcon
 								icon={Analytics01Icon}
-								size={24}
+								size={20}
 								color={activeTab === 'analytics' ? 'blue' : 'gray'}
 							/>
-							<span class="font-medium">Analitik</span>
+							<span class="font-medium truncate">Analitik</span>
 						</button>
 					</div>
 				</div>
 
 				<!-- Download Button - Far Right -->
-				<button class="btn rounded-md btn-ghost btn-lg" aria-label="Download">
+				<button class="btn rounded-md btn-ghost btn-lg mt-2 sm:mt-0" aria-label="Download">
 					<HugeiconsIcon icon={DownloadIcon} size={20} color="gray" />
 				</button>
 			</div>

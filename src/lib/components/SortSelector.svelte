@@ -31,10 +31,10 @@
 <div class="relative {width}">
 	<button
 		onclick={() => (isOpen = !isOpen)}
-		class="flex items-center gap-2 rounded-full border border-primary bg-primary/10 px-4 text-primary hover:bg-primary/20 transition-colors {height} justify-center"
+		class="flex items-center gap-2 rounded-full border border-primary bg-primary/10 px-4 text-primary hover:bg-primary/20 transition-colors {height} justify-center min-w-0"
 	>
 		<HugeiconsIcon icon={ArrowUpDownIcon} size={16} color="currentColor" />
-		<span class="text-sm font-medium">{selectedSort}</span>
+		<span class="text-sm font-medium truncate max-w-32 sm:max-w-none" title="{selectedSort}">{selectedSort}</span>
 		<HugeiconsIcon icon={ArrowDown01Icon} size={16} color="currentColor" />
 	</button>
 
@@ -45,10 +45,11 @@
 				{#each sortOptions as option}
 					<button
 						onclick={() => selectSort(option.label)}
-						class="w-full rounded-md px-2 py-2 text-left text-sm text-base-content hover:bg-base-200 {option.label ===
+						class="w-full rounded-md px-2 py-2 text-left text-sm text-base-content hover:bg-base-200 truncate {option.label ===
 						selectedSort
 							? 'bg-base-200 font-medium'
 							: ''}"
+						title="{option.label}"
 					>
 						{option.label}
 					</button>
