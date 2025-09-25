@@ -178,7 +178,7 @@
 						</div>
 
 						<!-- Window Icon -->
-						<button class="btn btn-ghost btn-sm" aria-label="Window options">
+						<button class="btn btn-ghost btn-sm" aria-label="Window options" onclick={toggleSidebar}>
 							<HugeiconsIcon icon={SidebarLeftIcon} size={16} color="currentColor" />
 						</button>
 					</div>
