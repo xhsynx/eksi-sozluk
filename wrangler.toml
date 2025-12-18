@@ -3,11 +3,11 @@ compatibility_date = "2024-01-15"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".cloudflare"
 
-# Puppeteer binding for Cloudflare Pages Functions
+# Browser binding for Cloudflare Pages Functions (Puppeteer)
 # This binding enables @cloudflare/puppeteer to work in Pages Functions
-[[pages.bindings]]
-type = "puppeteer"
-name = "PUPPETEER"
+# Note: For Pages, use [browser] section instead of [[pages.bindings]]
+[browser]
+binding = "PUPPETEER"
 
 # Cloudflare Pages otomatik olarak build output'u deploy eder
 # Deploy komutu gerekmez, sadece build komutu yeterli
