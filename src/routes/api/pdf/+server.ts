@@ -22,8 +22,13 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 		// @ts-ignore
 		const env = cfPlatform?.env;
 		
+		// Debug: Log environment to help diagnose binding issues
+		console.log('Platform env keys:', env ? Object.keys(env) : 'env is null/undefined');
+		console.log('PUPPETEER binding exists:', !!env?.PUPPETEER);
+		
 		// Puppeteer binding kontrolü - Cloudflare Pages'de binding yapılandırılmalı
 		// Dashboard → Workers & Pages → eksi-sozluk → Settings → Functions → Bindings → Add binding → Puppeteer
+		// veya wrangler.toml'da [[pages.bindings]] type = "puppeteer" name = "PUPPETEER"
 		if (env?.PUPPETEER) {
 			try {
 				const puppeteer = await import('@cloudflare/puppeteer');
@@ -84,9 +89,23 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 			}
 		}
 
-		// If Puppeteer is not available, return error
+		// If Puppeteer is not available, return detailed error
+		const errorMessage = env 
+			? `PDF oluşturma servisi şu anda kullanılamıyor. Puppeteer binding bulunamadı. Mevcut bindings: ${Object.keys(env).join(', ') || 'yok'}. Lütfen wrangler.toml dosyasında Puppeteer binding'ini yapılandırın.`
+			: 'PDF oluşturma servisi şu anda kullanılamıyor. Platform env mevcut değil.';
+		
+		console.error('Puppeteer binding not found:', { 
+			hasEnv: !!env, 
+			envKeys: env ? Object.keys(env) : null,
+			hasPuppeteer: !!env?.PUPPETEER 
+		});
+		
 		return json({ 
-			error: 'PDF oluşturma servisi şu anda kullanılamıyor. Lütfen Cloudflare Workers\'da Puppeteer binding\'ini yapılandırın.' 
+			error: errorMessage,
+			debug: {
+				hasEnv: !!env,
+				envKeys: env ? Object.keys(env) : null
+			}
 		}, { status: 503 });
 	} catch (error) {
 		console.error('PDF generation error:', error);
