@@ -3,6 +3,7 @@
 	import ButtonIcon from './ButtonIcon.svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { browser } from '$app/environment';
 	import { isDark, toggleTheme } from '$lib/stores/theme';
 	import NotificationsIcon from '$lib/assets/notifications.svg';
 	import LeftPanelCloseIcon from '$lib/assets/left_panel_close.svg';
@@ -67,13 +68,15 @@
 		{ name: 'Alarmlar', icon: AlarmIcon, route: '/alarmlar' }
 	];
 
-	// Function to check if a menu item is active
+	// Function to check if a menu item is active - SSR-safe
 	function isActive(route: string): boolean {
+		if (!browser) return false;
 		return $page.url.pathname === route;
 	}
 
-	// Function to handle menu item navigation
+	// Function to handle menu item navigation - SSR-safe
 	function navigateToRoute(route: string) {
+		if (!browser) return;
 		goto(route);
 	}
 
