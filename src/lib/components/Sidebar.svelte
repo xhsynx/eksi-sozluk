@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import ButtonIcon from './ButtonIcon.svelte';
-	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
 	import { isDark, toggleTheme } from '$lib/stores/theme';
@@ -68,13 +67,13 @@
 		{ name: 'Alarmlar', icon: AlarmIcon, route: '/alarmlar' }
 	];
 
-	// Current pathname - SSR-safe
+	// Current pathname - SSR-safe, use window.location on client-side
 	let currentPath = $state('');
 	
-	// Update current path on client-side only
+	// Update current path on client-side only using window.location
 	if (browser) {
 		$effect(() => {
-			currentPath = $page.url.pathname;
+			currentPath = window.location.pathname;
 		});
 	}
 	
