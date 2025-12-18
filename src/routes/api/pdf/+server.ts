@@ -16,11 +16,14 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 			return json({ error: 'URL is required' }, { status: 400 });
 		}
 
-		// Cloudflare Workers'da Puppeteer kullanımı
+		// Cloudflare Workers/Pages'de Puppeteer kullanımı
 		// @ts-ignore - Platform type varies by adapter, env is available in Cloudflare
 		const cfPlatform = platform as CloudflarePlatform;
 		// @ts-ignore
 		const env = cfPlatform?.env;
+		
+		// Puppeteer binding kontrolü - Cloudflare Pages'de binding yapılandırılmalı
+		// Dashboard → Workers & Pages → eksi-sozluk → Settings → Functions → Bindings → Add binding → Puppeteer
 		if (env?.PUPPETEER) {
 			try {
 				const puppeteer = await import('@cloudflare/puppeteer');
