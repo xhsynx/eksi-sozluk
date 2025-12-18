@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { HugeiconsIcon } from '@hugeicons/svelte';
 	import ButtonIcon from './ButtonIcon.svelte';
-	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
 	import { isDark, toggleTheme } from '$lib/stores/theme';
 	import NotificationsIcon from '$lib/assets/notifications.svg';
 	import LeftPanelCloseIcon from '$lib/assets/left_panel_close.svg';
@@ -71,11 +71,19 @@
 	let currentPath = $state('');
 	
 	// Update current path on client-side only using window.location
-	if (browser) {
-		$effect(() => {
+	onMount(() => {
+		if (browser) {
 			currentPath = window.location.pathname;
-		});
-	}
+			// Listen for navigation changes
+			const updatePath = () => {
+				currentPath = window.location.pathname;
+			};
+			window.addEventListener('popstate', updatePath);
+			return () => {
+				window.removeEventListener('popstate', updatePath);
+			};
+		}
+	});
 	
 	// Function to check if a menu item is active - SSR-safe
 	function isActive(route: string): boolean {
@@ -83,10 +91,10 @@
 		return currentPath === route;
 	}
 
-	// Function to handle menu item navigation - SSR-safe
+	// Function to handle menu item navigation - SSR-safe, use normal navigation
 	function navigateToRoute(route: string) {
 		if (!browser) return;
-		goto(route);
+		window.location.href = route;
 	}
 
 	// Left vertical buttons data
