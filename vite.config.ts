@@ -16,6 +16,10 @@ export default defineConfig({
 		noExternal: ['@cloudflare/puppeteer'],
 		resolve: {
 			conditions: ['workerd', 'worker', 'browser']
+		},
+		// Prevent client-side modules from being loaded during SSR
+		optimizeDeps: {
+			exclude: ['@sveltejs/kit']
 		}
 	},
 	optimizeDeps: {

@@ -7,7 +7,11 @@ const config = {
 	// for more information about preprocessors
 	preprocess: vitePreprocess(),
 	kit: { 
-		adapter: adapter()
+		adapter: adapter(),
+		// Prevent client-side code from being executed during SSR
+		prerender: {
+			handleHttpError: 'warn'
+		}
 	}
 };
 
