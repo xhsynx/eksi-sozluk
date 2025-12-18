@@ -68,10 +68,20 @@
 		{ name: 'Alarmlar', icon: AlarmIcon, route: '/alarmlar' }
 	];
 
+	// Current pathname - SSR-safe
+	let currentPath = $state('');
+	
+	// Update current path on client-side only
+	if (browser) {
+		$effect(() => {
+			currentPath = $page.url.pathname;
+		});
+	}
+	
 	// Function to check if a menu item is active - SSR-safe
 	function isActive(route: string): boolean {
-		if (!browser) return false;
-		return $page.url.pathname === route;
+		if (!browser || !currentPath) return false;
+		return currentPath === route;
 	}
 
 	// Function to handle menu item navigation - SSR-safe
