@@ -12,6 +12,26 @@ const dirname =
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
 	plugins: [tailwindcss(), sveltekit(), devtoolsJson()],
+	ssr: {
+		noExternal: ['@cloudflare/puppeteer'],
+		resolve: {
+			conditions: ['workerd', 'worker', 'browser']
+		}
+	},
+	optimizeDeps: {
+		exclude: ['@cloudflare/puppeteer']
+	},
+	build: {
+		rollupOptions: {
+			external: (id) => {
+				// Exclude Node.js built-in modules for Cloudflare Workers
+				if (id.startsWith('node:')) {
+					return true;
+				}
+				return false;
+			}
+		}
+	},
 	test: {
 		projects: [
 			{
