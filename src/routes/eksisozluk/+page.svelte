@@ -173,6 +173,55 @@
 	let chartCanvas = $state<HTMLCanvasElement | undefined>(undefined);
 	let chartInstance: Chart | null = null;
 
+	// PDF download state
+	let isDownloading = $state(false);
+
+	// PDF download function
+	async function handleDownloadPDF() {
+		isDownloading = true;
+		try {
+			// Get current page URL
+			const currentUrl = window.location.href;
+			
+			// Use Cloudflare Puppeteer API
+			const response = await fetch('/api/pdf', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ url: currentUrl })
+			});
+
+			if (!response.ok) {
+				throw new Error(`PDF oluşturma hatası: ${response.statusText}`);
+			}
+
+			const contentType = response.headers.get('Content-Type');
+			
+			if (contentType === 'application/pdf') {
+				// PDF received from server (Puppeteer)
+				const blob = await response.blob();
+				const url = window.URL.createObjectURL(blob);
+				const a = document.createElement('a');
+				a.href = url;
+				a.download = 'eksi-sozluk.pdf';
+				document.body.appendChild(a);
+				a.click();
+				document.body.removeChild(a);
+				window.URL.revokeObjectURL(url);
+			} else {
+				// Server returned an error message
+				const data = await response.json();
+				throw new Error(data.error || 'PDF oluşturulamadı');
+			}
+		} catch (error) {
+			console.error('PDF download error:', error);
+			alert(error instanceof Error ? error.message : 'PDF indirme sırasında bir hata oluştu. Lütfen tekrar deneyin.');
+		} finally {
+			isDownloading = false;
+		}
+	}
+
 	// Initialize Chart.js and load topics
 	onMount(() => {
 		Chart.register(...registerables);
@@ -398,8 +447,17 @@
 			</div>
 
 			<!-- Download Button - Far Right -->
-			<button class="btn rounded-md btn-ghost { $isDark ? 'bg-zinc-800' : 'bg-zinc-200'}" aria-label="Download">
-				<img src={DownloadIcon} alt="Download" width="20" height="20" />
+			<button 
+				class="btn rounded-md btn-ghost { $isDark ? 'bg-zinc-800' : 'bg-zinc-200'}" 
+				aria-label="Download"
+				onclick={handleDownloadPDF}
+				disabled={isDownloading}
+			>
+				{#if isDownloading}
+					<span class="loading loading-spinner loading-sm"></span>
+				{:else}
+					<img src={DownloadIcon} alt="Download" width="20" height="20" />
+				{/if}
 			</button>
 		</div>
 
@@ -540,8 +598,17 @@
 										</div>
 
 										<!-- Download Button -->
-										<button class="btn rounded-md btn-ghost { $isDark ? 'bg-zinc-800' : 'bg-zinc-200'}" aria-label="Download">
-											<img src={DownloadIcon} alt="Download" width="20" height="20" />
+										<button 
+											class="btn rounded-md btn-ghost { $isDark ? 'bg-zinc-800' : 'bg-zinc-200'}" 
+											aria-label="Download"
+											onclick={handleDownloadPDF}
+											disabled={isDownloading}
+										>
+											{#if isDownloading}
+												<span class="loading loading-spinner loading-sm"></span>
+											{:else}
+												<img src={DownloadIcon} alt="Download" width="20" height="20" />
+											{/if}
 										</button>
 									</div>
 								</div>
