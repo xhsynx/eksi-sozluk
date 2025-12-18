@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
 
 	// Set error message based on the error
 	let errorMessage = $derived(() => {
@@ -8,6 +9,18 @@
 		}
 		return 'This page is under development';
 	});
+
+	function goBack() {
+		if (browser) {
+			window.history.back();
+		}
+	}
+
+	function goHome() {
+		if (browser) {
+			window.location.href = '/';
+		}
+	}
 </script>
 
 <div class="min-h-screen bg-base-100 flex items-center justify-center">
@@ -21,13 +34,13 @@
 		<div class="flex flex-col sm:flex-row gap-4 justify-center">
 			<button 
 				class="btn btn-primary"
-				onclick={() => window.history.back()}
+				onclick={goBack}
 			>
 				Go Back
 			</button>
 			<button 
 				class="btn btn-outline"
-				onclick={() => window.location.href = '/'}
+				onclick={goHome}
 			>
 				Go Home
 			</button>

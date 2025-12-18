@@ -14,6 +14,7 @@
 	import TopicItem from './components/TopicItem.svelte';
 	import { Chart, registerables } from 'chart.js';
 	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 	import { topicService } from '$lib/services/topicService';
 	import type { Topic } from '$lib/types/topic';
 	import { isDark } from '$lib/stores/theme';
@@ -178,6 +179,8 @@
 
 	// PDF download function
 	async function handleDownloadPDF() {
+		if (!browser) return; // Only run on client-side
+		
 		isDownloading = true;
 		try {
 			// Get current page URL
